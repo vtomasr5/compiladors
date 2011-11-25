@@ -1,0 +1,15 @@
+project Adac is
+
+   for Source_Dirs use ("src");
+   for Object_Dir use "build";
+   for Main use ("prova_tnoms.adb");
+   for Exec_Dir use "bin";
+   for Source_Files use ("lexic_io.ads", "d_palabra.adb", "lexic_io.adb", "d_taulanoms.adb", "d_taulanoms.ads", "adac.adb", "lexic_dfa.ads", "lexic_dfa.adb", "prova_tnoms.adb", "d_generals.ads", "d_palabra.adb", "d_palabra.ads", "a_lexic.ads", 
+"a_lexic.adb", "principal.adb", "lexic.l");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-g");
+   end Builder;
+
+end Adac;
+

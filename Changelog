@@ -1,0 +1,13 @@
+lexic.l
+   -quitado <<eof>>
+   -agregado espacio en [\t\n \r]+	
+documentacio
+	-gramatica
+	   -cambiado TIPO_PARAM -> MODE_PARAM
+	   -corregido CRIDADA -> CRIDA 
+        -falta poner el lexico corregido y en hoja VERTICAL
+        -cambié el orden : primero la gramatica y luego el lexico
+Cambiar prueba_tnoms por una mas sencilla
+
+         
+
