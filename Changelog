@@ -1,3 +1,11 @@
+----- 26/11/2011 -----
+documentacio
+	- afegit lexic corregit en vertical
+
+codi
+	- canviat afegir() per posa()
+
+----- 25/11/2011 -----
 lexic.l
    -quitado <<eof>>
    -agregado espacio en [\t\n \r]+	
