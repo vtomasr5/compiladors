@@ -1,6 +1,6 @@
 project Adac is
 
-   for Source_Dirs use ("src");
+   for Source_Dirs use ("src", "lib");
    for Object_Dir use "build";
    for Main use ("prova_tnoms.adb");
    for Exec_Dir use "bin";
