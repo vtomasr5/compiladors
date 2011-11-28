@@ -12,7 +12,7 @@ procedure prova_Tnoms is
    id_out: id_nom;
 begin
    t_buida(tn);
-   Open(F, in_File, "../tests/prova_tnoms.txt");
+   Open(F, in_File, "../../tests/prova_tnoms.txt");
    while not End_Of_File(F) loop
       saltar_espacios(F, car);
       leer_palabra(buffer, F, lenght,car);
