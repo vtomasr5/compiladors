@@ -1,3 +1,5 @@
+with d_generals; use d_generals;
+with d_taulanoms; use d_taulanoms;
 package d_Token is
    type Token is (End_of_Input, Error, pc_and, pc_array, pc_begin, pc_constant,
                   pc_else, pc_end, pc_in, pc_is, pc_loop, pc_mod, pc_new,
@@ -9,16 +11,25 @@ package d_Token is
                   s_diferent, s_puntpunt, id, literal);
 
 
---     type Posicio is record Lin,Col: Natural; end record;
---     type Tipus_Atribut is (A_Ident, A_Lit, A_Atom);
---     type Atribut (Ta: Tipus_Atribut:=A_Atom) is record
---        P:Posicio;
---        case Ta is
---           when A_Ident => Id:id_nom;
---           when A_Lit => Ts: Tipus_Subj; Vl:valor;
---           when A_Atom => null;
---        end case;
---     END RECORD;
---     A:Atribut;
---     procedure Rl_Atom (A: out atribut; L,C: in Natural);
+   type Tipus_Atribut is (A_Ident, A_Lit, A_Atom);
+   type Posicio is record Lin,Col: Natural; end record;
+   type Tipus_Subj is (Ts_Enter, Ts_Caracter, Ts_String);
+   type valor is new Integer;
+   type Atribut (Ta: Tipus_Atribut:=A_Atom) is record
+      P:Posicio;
+      case Ta is
+         when A_Ident => Id:id_nom;
+         when A_Lit => Ts: Tipus_Subj; Vl:valor;
+         when A_Atom => null;
+      end case;
+   END RECORD;
+   procedure Rl_Identificador (A: out atribut; Nom: in String; L,C: in Natural);
+   procedure Rl_literal_string (A: out atribut; Nom: in String; L,C: in Natural);
+   procedure Rl_literal_caracter (A: out atribut; Nom: in String; L,C: in Natural);
+   procedure Rl_literal_enter (A: out atribut; Nom: in String; L,C: in Natural);
+   procedure Rl_Atom (A: out atribut; L,C: in Natural);
+
+   A:Atribut;
+   private
+   t_n: t_noms;
 end d_Token;

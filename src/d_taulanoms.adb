@@ -133,7 +133,26 @@ package body d_taulanoms is
 
       Put("---- FIN TEST--------");new_line;
    end Test;
+   --- nuevo copiado tal cual de toni---
 
+   procedure Afegir_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String) is
+      Tc: T_Car renames T_N.Tc;
+      Max_Valor_car: Id_str renames T_N.index_tcar;
+   begin
+      Pos_Tc:= Max_Valor_Car;
+      Afegir_tc (Token(Token'First+1..Token'Last-1), Tc, Max_Valor_Car);
+   end Afegir_Str;
+
+   function Consultar_Str (T_N: in T_Noms; Pos_Tc: in id_str) return String is
+      Tc: T_Car renames T_N.Tc;
+      index: id_str;
+   begin
+      index:=pos_tc;
+      while Tc(Pos_Tc) /= FDC loop
+         index:=index + 1;
+      end loop;
+      return String (Tc (pos_tc..index-1));
+   end Consultar_Str;
 end d_taulanoms;
 
 

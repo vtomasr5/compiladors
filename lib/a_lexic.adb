@@ -10,6 +10,7 @@ YY_END_OF_BUFFER : constant := 51;
 subtype yy_state_type is integer;
 yy_current_state : yy_state_type;
 INITIAL : constant := 0;
+yylval : Atribut;
 yy_accept : constant array(0..124) of short :=
     (   0,
         0,    0,   51,   49,   47,   47,   49,   49,   27,   28,
@@ -352,211 +353,207 @@ end if;
 
 
 -- paraules reservades (en ordre alfabetic)
-when 1 => 
+when 1 =>
 --# line 41 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_and;
 
-when 2 => 
+when 2 =>
 --# line 42 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_array;
 
-when 3 => 
+when 3 =>
 --# line 43 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_begin;
 
-when 4 => 
+when 4 =>
 --# line 44 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_constant;
 
-when 5 => 
+when 5 =>
 --# line 45 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_else;
 
-when 6 => 
+when 6 =>
 --# line 46 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_end;
 
-when 7 => 
---# line 47 "lexic.l"
-rl_atom (yylval, yy_line_number, yy_begin_column); return pc_if;
 
-when 8 => 
+
+when 8 =>
 --# line 48 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_in;
 
-when 9 => 
+when 9 =>
 --# line 49 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_is;
 
-when 10 => 
+when 10 =>
 --# line 50 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_loop;
 
-when 11 => 
+when 11 =>
 --# line 51 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_mod;
 
-when 12 => 
+when 12 =>
 --# line 52 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_new;
 
-when 13 => 
+when 13 =>
 --# line 53 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_not;
 
-when 14 => 
+when 14 =>
 --# line 54 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_null;
 
-when 15 => 
+when 15 =>
 --# line 55 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_of;
 
-when 16 => 
+when 16 =>
 --# line 56 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_or;
 
-when 17 => 
+when 17 =>
 --# line 57 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_out;
 
-when 18 => 
+when 18 =>
 --# line 58 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_procedure;
 
-when 19 => 
+when 19 =>
 --# line 59 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_record;
 
-when 20 => 
+when 20 =>
 --# line 60 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_range;
 
-when 21 => 
+when 21 =>
 --# line 61 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_return;
 
-when 22 => 
+when 22 =>
 --# line 62 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_then;
 
-when 23 => 
+when 23 =>
 --# line 63 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_type;
 
-when 24 => 
+when 24 =>
 --# line 64 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return pc_while;
 
--- simbols 
-when 25 => 
+-- simbols
+when 25 =>
 --# line 67 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_dospunts;
 
-when 26 => 
+when 26 =>
 --# line 68 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_punticoma;
 
-when 27 => 
---# line 69 "lexic.l"
-rl_atom (yylval, yy_line_number, yy_begin_column); return s_parentesiobert;
 
-when 28 => 
+
+when 28 =>
 --# line 70 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_parentesitancat;
 
-when 29 => 
+when 29 =>
 --# line 71 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_mes;
 
-when 30 => 
+when 30 =>
 --# line 72 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_menys;
 
-when 31 => 
+when 31 =>
 --# line 73 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_per;
 
-when 32 => 
+when 32 =>
 --# line 74 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_divisio;
 
-when 33 => 
+when 33 =>
 --# line 75 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_igual;
 
-when 34 => 
+when 34 =>
 --# line 76 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_menor;
 
-when 35 => 
+when 35 =>
 --# line 77 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_major;
 
-when 36 => 
+when 36 =>
 --# line 78 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_menorigual;
 
-when 37 => 
+when 37 =>
 --# line 79 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_majorigual;
 
-when 38 => 
+when 38 =>
 --# line 80 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_coma;
 
-when 39 => 
+when 39 =>
 --# line 81 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_punt;
 
-when 40 => 
+when 40 =>
 --# line 82 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_assignacio;
 
-when 41 => 
+when 41 =>
 --# line 83 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_diferent;
 
-when 42 => 
+when 42 =>
 --# line 84 "lexic.l"
 rl_atom (yylval, yy_line_number, yy_begin_column); return s_puntpunt;
 
 -- Expressions regulars reconegudes. Ex: sumar_parells2
-when 43 => 
+when 43 =>
 --# line 87 "lexic.l"
 rl_identificador (yylval, yytext, yy_line_number, yy_begin_column); return id;
 
-when 44 => 
+when 44 =>
 --# line 89 "lexic.l"
 rl_literal_string (yylval, yytext, yy_line_number, yy_begin_column); return literal;
 
-when 45 => 
+when 45 =>
 --# line 91 "lexic.l"
 rl_literal_enter (yylval, yytext, yy_line_number, yy_begin_column); return literal;
 
-when 46 => 
+when 46 =>
 --# line 93 "lexic.l"
 rl_literal_caracter (yylval, yytext, yy_line_number, yy_begin_column); return literal;
 
 -- caracters no representables
-when 47 => 
+when 47 =>
 --# line 96 "lexic.l"
 null;
 
 -- comentari
-when 48 => 
+when 48 =>
 --# line 99 "lexic.l"
 null;
 
 -- qualsevol altra cosa
-when 49 => 
+when 49 =>
 --# line 102 "lexic.l"
 return Error;
 
-when 50 => 
+when 50 =>
 --# line 104 "lexic.l"
 ECHO;
-when YY_END_OF_BUFFER + INITIAL + 1 => 
+when YY_END_OF_BUFFER + INITIAL + 1 =>
     return End_Of_Input;
                 when YY_END_OF_BUFFER =>
                     -- undo the effects of YY_DO_BEFORE_ACTION
