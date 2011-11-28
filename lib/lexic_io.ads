@@ -1,4 +1,4 @@
-with lexic_dfa; use lexic_dfa;
+with lexic_dfa; use lexic_dfa; 
 with text_io; use text_io;
 
 package lexic_io is
@@ -45,8 +45,7 @@ Token_At_End_Of_Line : Boolean := False;
 -- Indicates whether or not last matched token is end_of_line.
 -- END OF UMASS CODES.
 
-procedure YY_INPUT
-     (buf:out unbounded_character_array;result:out integer;max_size:in integer);
+procedure YY_INPUT(buf: out unbounded_character_array; result: out integer; max_size: in integer);
 function yy_get_next_buffer return eob_action_type;
 procedure yyunput( c : character; yy_bp: in out integer );
 procedure unput(c : character);

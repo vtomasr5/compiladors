@@ -1,5 +1,6 @@
 with A_Lexic; use A_Lexic;
 with Lexic_Io; use Lexic_Io;
+with d_token; use d_token;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
 

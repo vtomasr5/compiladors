@@ -1,0 +1,19 @@
+#!/bin/sh
+
+PATH=$PATH:"src/"
+
+wine aflex.exe -E lexic.l
+gnatchop lexic.a
+gnatchop lexic_dfa.a
+gnatchop lexic_io.a
+mv lexic.a "../lib"
+mv lexic_dfa.a "../lib"
+mv lexic_io.a "../lib"
+mv a_lexic.adb "../lib"
+mv a_lexic.ads "../lib"
+mv lexic_dfa.adb "../lib"
+mv lexic_dfa.ads "../lib"
+mv lexic_io.adb "../lib"
+mv lexic_io.ads "../lib"
+
+#EDU MASTER LINUX

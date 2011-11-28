@@ -105,8 +105,10 @@ z [zZ]
 
 with lexic_io; use lexic_io; 
 with lexic_dfa; use lexic_dfa;
-with a_lexic; use a_lexic;
-
+with d_token; use d_token;
+package a_lexic is 
+	function yylex return token;
+end a_lexic;
 package body a_lexic is
 ##
 end a_lexic;

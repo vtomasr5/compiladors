@@ -1,3 +1,4 @@
+
 package body lexic_io is
 -- gets input and stuffs it into 'buf'.  number of characters read, or YY_NULL,
 -- is returned in 'result'.
@@ -86,14 +87,14 @@ begin
 -- UMASS CODES :
            Temp_Line(i) := c;
 -- END OF UMASS CODES.
-         end if;
+         end if; 
 
          loc := loc + 1;
          i := i + 1;
       end loop;
     end if; -- for input file being standard input
 
-    result := i - 1;
+    result := i - 1; 
 -- UMASS CODES :
 --   Since we get one line by one line, if we
 --   reach here, it means that current line have
@@ -136,7 +137,7 @@ end YY_INPUT;
 -- yy_get_next_buffer - try to read in new buffer
 --
 -- returns a code representing an action
---     EOB_ACT_LAST_MATCH -
+--     EOB_ACT_LAST_MATCH - 
 --     EOB_ACT_RESTART_SCAN - restart the scanner
 --     EOB_ACT_END_OF_FILE - end of file
 
@@ -146,7 +147,7 @@ function yy_get_next_buffer return eob_action_type is
     number_to_move : integer;
     ret_val : eob_action_type;
     num_to_read : integer;
-begin
+begin    
     if ( yy_c_buf_p > yy_n_chars + 1 ) then
         raise NULL_IN_INPUT;
     end if;
@@ -161,7 +162,7 @@ begin
     dest := dest + 1;
     source := source + 1;
     end loop;
-
+        
     if ( yy_eof_has_been_seen ) then
     -- don't do the read, it's not guaranteed to return an EOF,
     -- just force an EOF
@@ -188,7 +189,7 @@ begin
     else
     ret_val := EOB_ACT_RESTART_SCAN;
     end if;
-
+    
     yy_n_chars := yy_n_chars + number_to_move;
     yy_ch_buf(yy_n_chars) := YY_END_OF_BUFFER_CHAR;
     yy_ch_buf(yy_n_chars + 1) := YY_END_OF_BUFFER_CHAR;
