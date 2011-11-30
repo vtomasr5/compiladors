@@ -7,7 +7,7 @@ with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
 procedure Principal is
    Tk: Token := Error;
 begin
-   Open_Input("../tests/prova_tnoms.txt");
+   Open_Input("../../tests/prova_tnoms.txt");
    while tk /= End_of_Input loop
       Tk := Yylex;
    end loop;
