@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PATH=$PATH:"src/"
-
 wine aflex.exe -E lexic.l
 gnatchop lexic.a
 gnatchop lexic_dfa.a
