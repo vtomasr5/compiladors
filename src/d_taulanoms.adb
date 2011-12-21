@@ -2,7 +2,10 @@ wiTh Ada.TexT_Io; use Ada.TexT_Io;
 wiTh d_taulanoms; use d_taulanoms;
 
 package body d_taulanoms is
+
    FDC: constant Character := Ascii.Nul;
+
+   -- Hashing
    function Hashing (Nom : in String) return Integer is
       hash: Integer := 0;
    begin
@@ -13,6 +16,7 @@ package body d_taulanoms is
       return hash mod MAX_NOMS;
    end Hashing;
 
+   -- T_buida
    procedure T_buida (tn: out t_noms) is
    begin
       for I in t_disp'First.. t_disp'Last loop
@@ -23,6 +27,7 @@ package body d_taulanoms is
       tn.Index_tcar := id_str'First;
    end T_buida;
 
+   -- Afegir_tc
    procedure Afegir_tc(Nom: in String; Tc: in out t_car; Pos: in out id_str) is
    begin
       for I in Nom'First..Nom'Last loop
@@ -33,8 +38,8 @@ package body d_taulanoms is
       Pos := Pos + 1;
    end Afegir_tc;
 
-   function Existeix(Nom: in String; Tc: in t_car; valor: in id_str)
-                     return Boolean is
+   -- Existeix
+   function Existeix(Nom: in String; Tc: in t_car; valor: in id_str) return Boolean is
       pos: id_str;
       i_string: integer; -- indice para recorrer el string
    begin
@@ -55,7 +60,8 @@ package body d_taulanoms is
       return False;
    end Existeix;
 
-   procedure posa(tn: in out t_noms; Nom: in String;id_out: out id_nom) is
+   -- posa
+   procedure posa(tn: in out t_noms; Nom: in String; id_out: out id_nom) is
       hash: id_nom;
       valor_td: id_nom;
       td: t_disp renames tn.td;
@@ -66,24 +72,25 @@ package body d_taulanoms is
    begin
       hash := id_nom (Hashing (Nom));
       valor_td := Td (hash);
-      Put (Nom & " hash" & id_nom'image( hash ) & " valor_td: " & id_nom'image( valor_td ));
+      put ("nom: " & nom);
+      --Put (Nom & " hash" & id_nom'image( hash ) & " valor_td: " & id_nom'image( valor_td ));
       while valor_td /= 0 and not Existeix(Nom,Tc,Tid(valor_td).Ptr_t_car) loop
          -- COLISION
          --           hash:= hash + 3; -- saltamos
          --           valor_td:= Td (hash);
          valor_td := Tid(valor_td).seg;
-         Put ("COLISION" & id_nom'image( valor_td ));
+         --Put ("COLISION" & id_nom'image( valor_td ));
          new_line;
       end loop;
 
       if valor_td /= 0 then
-         -- YA EXISTE --
+         -- YA EXISTE
          id_out := valor_td;
-         Put(" EXISTE: " & id_nom'image(valor_td)); new_line;
+         --Put(" EXISTE: " & id_nom'image(valor_td)); new_line;
       else
 
          Index_tid := Index_tid +1;
-         Put(" NEW i_tid: " & id_nom'image( Index_tid) & " td(hash): " & id_nom'image( Td (Hash)));new_line;
+         --Put(" NEW i_tid: " & id_nom'image( Index_tid) & " td(hash): " & id_nom'image( Td (Hash)));new_line;
          Tid(Index_tid).seg := Td (Hash);
          Td (hash) := Index_tid;
          Id_out := Index_tid;
@@ -92,6 +99,7 @@ package body d_taulanoms is
       end if;
    end posa;
 
+   -- Consultar
    function Consultar(tn: in t_noms; Id_tid: in id_nom) return String is
       Pos_Tc: id_str;
       Tc: t_car renames tn.Tc;
@@ -104,6 +112,7 @@ package body d_taulanoms is
       return String(Tc (Tid(Id_tid).Ptr_t_car..Pos_Tc-1));
    end Consultar;
 
+   -- Test
    procedure Test (tn: in t_noms) is
    begin
       Put("---- TD --------");new_line;
@@ -124,7 +133,7 @@ package body d_taulanoms is
       end loop;
 
       Put("---- TC --------");new_line;
-      for I in 1.. Integer(tn.index_tcar)-1 loop
+      for I in 1..Integer(tn.index_tcar)-1 loop
          put (character'image(tn.Tc(id_str(I))));
          if (tn.Tc(id_str(I)) = Ascii.Nul) then
             new_line;
@@ -133,26 +142,26 @@ package body d_taulanoms is
 
       Put("---- FIN TEST--------");new_line;
    end Test;
-   --- nuevo copiado tal cual de toni---
 
-   procedure Afegir_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String) is
+   -- Posa_str
+   procedure Posa_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String) is
       Tc: T_Car renames T_N.Tc;
       Max_Valor_car: Id_str renames T_N.index_tcar;
    begin
-      Pos_Tc:= Max_Valor_Car;
+      Pos_Tc := Max_Valor_Car;
       Afegir_tc (Token(Token'First+1..Token'Last-1), Tc, Max_Valor_Car);
-   end Afegir_Str;
+   end Posa_Str;
 
+   -- Consultar_str
    function Consultar_Str (T_N: in T_Noms; Pos_Tc: in id_str) return String is
       Tc: T_Car renames T_N.Tc;
       index: id_str;
    begin
-      index:=pos_tc;
+      index := pos_tc;
       while Tc(Pos_Tc) /= FDC loop
-         index:=index + 1;
+         index := index + 1;
       end loop;
       return String (Tc (pos_tc..index-1));
    end Consultar_Str;
+
 end d_taulanoms;
-
-

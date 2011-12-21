@@ -5,9 +5,10 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
 
 procedure Principal is
-   Tk: Token := Error;
+   Tk: Token:= Error;
 begin
    Open_Input("../../tests/prova_tnoms.txt");
+   tk:= yylex;
    while tk /= End_of_Input loop
       Tk := Yylex;
    end loop;

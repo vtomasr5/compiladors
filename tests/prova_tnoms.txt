@@ -1,1 +1,5 @@
-deja. fijo In changed
+procedure prova is
+    a: integer;
+begin
+    a := 3;
+end prova;

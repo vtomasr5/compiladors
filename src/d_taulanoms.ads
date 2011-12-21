@@ -2,18 +2,19 @@ with d_generals; use d_generals;
 
 package d_taulanoms is
    --------------------------
-   -- DECLARACIO DE TIPUS: --
+   -- DECLARACIO DE TIPUS  --
    --------------------------
    type t_noms is limited private;
    ------------------------------------------
-   -- DECLARACIO DE PROCEDIMENTS/FUNCIONS: --
+   -- DECLARACIO DE PROCEDIMENTS/FUNCIONS  --
    ------------------------------------------
    procedure Test (tn: in t_noms); -- hay que quitarlo, pero por ahora lo dejamos
    procedure T_buida (tn: out t_noms);
-   procedure posa (tn: in out t_noms; Nom: in String; id_out: out id_nom);
-    procedure Afegir_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String);
+   procedure Posa (tn: in out t_noms; Nom: in String; id_out: out id_nom);
+   procedure Posa_str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String);
    function Consultar (tn: in t_noms; id_tid: in id_nom) return String;
-function Consultar_Str (T_N: in T_Noms; Pos_Tc: in id_str) return String;
+   function Consultar_str (T_N: in T_Noms; Pos_Tc: in id_str) return String;
+
 private
    -- DEFINICIO DE TIPUS--
    type t_id is record

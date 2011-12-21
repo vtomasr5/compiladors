@@ -1,4 +1,3 @@
-
 package body d_palabra is
    ---------------------------------
    -- DEFINICIO DE PROCEDIMENTS: --
