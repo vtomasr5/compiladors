@@ -4,3 +4,4 @@ build/*
 bin/*
 *.pdf
 .directory
+*.DS_Store

@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PATH=$PATH:"src/"
-
 wine aflex.exe -E lexic.l
 gnatchop lexic.a
 gnatchop lexic_dfa.a
@@ -15,5 +13,3 @@ mv lexic_dfa.adb "../lib"
 mv lexic_dfa.ads "../lib"
 mv lexic_io.adb "../lib"
 mv lexic_io.ads "../lib"
-
-#EDU MASTER LINUX
