@@ -10,13 +10,13 @@ package d_Token is
                   s_mes, s_menys, s_per, s_divisio, s_igual, s_menor, s_major,
                   s_menorigual, s_majorigual, s_coma, s_punt, s_assignacio,
                   s_diferent, s_puntpunt, id, literal);
-   type Tipus_Atribut is (A_Ident, A_Lit, A_Atom);
+   type Tipus_Atribut is (A_Ident, A_Lit, A_Atom); -- it's in the apuntes
    type Posicio is record
       Lin, Col: Natural;
    end record;
    type Tipus_Subj is (Ts_Enter, Ts_Caracter, Ts_String);
    type valor is new Integer;
-   type Atribut (Ta: Tipus_Atribut:= A_Atom) is record
+   type Atribut (Ta: Tipus_Atribut:= A_Atom) is record -- it's in the apuntes
       P: Posicio;
       case Ta is
          when A_Ident => Id: id_nom;
