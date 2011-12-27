@@ -9,7 +9,7 @@ package body D_Token is
       p: posicio;
    begin
       p :=(l,c);
-      Posa (t_n, Id, Nom);
+      Posa (t_n,Nom,Id);
       A:= (A_Ident, P, Id);
       Put (Nom);
       Put (L);
@@ -19,7 +19,7 @@ package body D_Token is
    end Rl_Identificador;
 
    procedure Rl_Literal_String (A:out atribut; Nom: in String; L,C: in Natural) is
-      Id: id_string;
+      Id: id_str;
       p: posicio;
    begin
       p :=(l,c);
@@ -36,11 +36,11 @@ package body D_Token is
       p: posicio;
    begin
       p :=(l,c);
-      A:= (A_Lit, P, Ts_Caracter, Valor (Character'Pos(Nom(2))));
-      Put (Nom (2));
+      A:= (A_Lit, P, Ts_Caracter, Valor (Character'Pos(Nom(Nom'First+1))));
+      Put (Nom (Nom'First+1));
       Put (L);
       put (c);
-      Put (Character'Pos(Nom(2)));
+      Put (Character'Pos(Nom(Nom'First+1)));
       new_line;
    end Rl_Literal_Caracter;
 
@@ -69,5 +69,5 @@ package body D_Token is
    end Rl_Atom;
 
 begin
-   tbuida(t_n);
+   T_buida(t_n);
 end d_token;

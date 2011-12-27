@@ -11,4 +11,7 @@ package d_generals is
    type id_nom is new Natural range 0..max_noms;
    type id_str is new Natural range 1..max_str;
 
+   -- falta añadir los nuevos tipos
+
+
 end d_generals;

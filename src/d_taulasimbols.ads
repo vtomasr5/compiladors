@@ -8,7 +8,7 @@ package d_taulasimbols is
 
    type index_expansio is private;
 
-   type taula_simbols is private;
+   type taula_simbols is limited private;
 
    procedure tbuida(ts : out taula_simbols);
    procedure posa (ts : in out taula_simbols; id : in id_nom; d : in descripcio; error : out boolean);
@@ -18,7 +18,7 @@ package d_taulasimbols is
    procedure surt_bloc (ts : in out taula_simbols);
 
    procedure posa_camp (ts : in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean);
-   function Consulta_Camp (Ts: in Taula_Simbols; Idr, Idc: in Id_Nom) return Descripcio;
+   function consulta_Camp (Ts: in Taula_Simbols; Idr, Idc: in Id_Nom) return Descripcio;
    procedure actualizar(ts: in out taula_simbols; id: in id_nom; d: in descripcio);
 
    procedure posa_index (ts: in out taula_simbols; ida: in id_nom; di: in descripcio);
