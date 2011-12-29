@@ -2,15 +2,14 @@ project Adac is
 
    for Source_Dirs use ("src", "lib");
    for Object_Dir use "build";
-   for Main use ("principal.adb", "prova_tnoms.adb");
+   for Main use ("principal.adb", "prova_tnoms.adb", "prova_tsimbols.adb");
    for Exec_Dir use "bin";
+   for Source_Files use ("d_taulanoms.ads", "d_palabra.ads", "d_descripcio.ads", "d_token.ads", "principal.adb", "d_palabra.adb", "d_taulasimbols.adb", "d_generals.ads", "prova_tnoms.adb", "prova_tsimbols.adb", "d_token.adb", "adac.adb", 
+"d_taulasimbols.ads", "d_arbre.ads", "d_taulanoms.adb", "lexic_io.adb", "lexic_dfa.ads", "lexic_io.ads", "a_lexic.adb", "lexic_dfa.adb", "a_lexic.ads", "prova_tsimbols.adb");
 
    package Builder is
       for Default_Switches ("ada") use ("-g");
    end Builder;
-
-   for Source_Files use ("d_taulanoms.ads", "d_palabra.ads", "d_descripcio.ads", "d_token.ads", "principal.adb", "d_palabra.adb", "d_taulasimbols.adb", "d_generals.ads", "prova_tnoms.adb", "prova_tsimbols.adb", "d_token.adb", "adac.adb", 
-"d_taulasimbols.ads", "d_arbre.ads", "d_taulanoms.adb", "lexic_io.adb", "lexic_dfa.ads", "lexic_io.ads", "a_lexic.adb", "lexic_dfa.adb", "a_lexic.ads", "prova_tsimbols.adb");
 
 end Adac;
 

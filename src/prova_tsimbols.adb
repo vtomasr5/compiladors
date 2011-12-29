@@ -1,5 +1,5 @@
-with Decls.Dtaula_de_simbols,Decls.dgenerals,ada.Text_IO,ada.Integer_Text_IO, decls.d_descripcio;
-use Decls.dtaula_de_simbols,Decls.dgenerals,ada.Text_IO,ada.Integer_Text_IO, decls.d_descripcio;
+with d_taulasimbols, d_generals, ada.Text_IO,ada.Integer_Text_IO, d_descripcio;
+use d_taulasimbols, d_generals, ada.Text_IO,ada.Integer_Text_IO, d_descripcio;
 
 procedure prova_tsimbols is
    Ts: taula_simbols;
@@ -43,38 +43,38 @@ begin
    end if;
 
    --- Imprimir taules
---     put_line("Td:");
---     for i in 1..5 loop
---        put(" Descripció");
---        put(tipus_descripcio'pos(ts.td(id_nom(i)).d.td));
---        put("Profunditat:");
---        put(integer(ts.td(id_nom(i)).prof));
---        put(" Següent");
---        put(integer(ts.td(id_nom(i)).s));
---      Put_Line("");
---     end loop;
+   --     put_line("Td:");
+   --     for i in 1..5 loop
+   --        put(" Descripció");
+   --        put(tipus_descripcio'pos(ts.td(id_nom(i)).d.td));
+   --        put("Profunditat:");
+   --        put(integer(ts.td(id_nom(i)).prof));
+   --        put(" Següent");
+   --        put(integer(ts.td(id_nom(i)).s));
+   --      Put_Line("");
+   --     end loop;
 
---     put_line("Te:");
---     for i in 1..ts.ta(ts.prof) loop
---        put(" Idnom");
---        put(integer(ts.te(index_expansio(i)).id));
---        put("Profunditat:");
---        put(integer(ts.te(index_expansio(i)).prof));
---        put(" Descripció");
---        put(tipus_descripcio'pos(ts.te(index_expansio(i)).d.td));
---        put(" Següent");
---        put(integer(ts.te(index_expansio(i)).s));
---        put_line("");
---     end loop;
+   --     put_line("Te:");
+   --     for i in 1..ts.ta(ts.prof) loop
+   --        put(" Idnom");
+   --        put(integer(ts.te(index_expansio(i)).id));
+   --        put("Profunditat:");
+   --        put(integer(ts.te(index_expansio(i)).prof));
+   --        put(" Descripció");
+   --        put(tipus_descripcio'pos(ts.te(index_expansio(i)).d.td));
+   --        put(" Següent");
+   --        put(integer(ts.te(index_expansio(i)).s));
+   --        put_line("");
+   --     end loop;
 
---     put_line("Ta:");
---     for i in 1..ts.prof loop
---        put("Ambit:");
---        put(integer(ts.ta(niv_prof(i))));
---        put_line("");
---     end loop;
-     surt_bloc(ts);
+   --     put_line("Ta:");
+   --     for i in 1..ts.prof loop
+   --        put("Ambit:");
+   --        put(integer(ts.ta(niv_prof(i))));
+   --        put_line("");
+   --     end loop;
+   surt_bloc(ts);
 exception
-	when CONSTRAINT_ERROR => put("Error");
+   when CONSTRAINT_ERROR => put("Error");
 
 end prova_tsimbols;

@@ -14,7 +14,7 @@ package body d_taulasimbols is
       ta(prof) := 0;
    end tbuida;
 
-  procedure posa (ts : in out taula_simbols; id : in id_nom; d : in descripcio; error : out boolean) is
+   procedure posa (ts : in out taula_simbols; id : in id_nom; d : in descripcio; error : out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -67,9 +67,9 @@ package body d_taulasimbols is
             td(id).d := te(ie).d;
             td(id).s := te(ie).s;
          end if;
-            ie := ie - 1;
+         ie := ie - 1;
       end loop;
-      end surt_bloc;
+   end surt_bloc;
 
    procedure posa_camp (ts : in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean) is
       td: taula_descripcio renames ts.td;
@@ -133,130 +133,130 @@ package body d_taulasimbols is
       ts.td(id).d := d;
    end actualizar;
 
-      procedure posa_index (ts: in out taula_simbols; ida: in id_nom; di: in descripcio) is
-         td: taula_descripcio renames ts.td;
-         te: taula_expansio renames ts.te;
-         ta: taula_ambits renames ts.ta;
-         da: descripcio;
-         p, pp: index_expansio;
-         prof : niv_prof renames ts.prof;
-         ne: index_expansio;
-      begin
-         da := td(ida).d;
-         if not (da.td = dtipus) then
-            raise error_array;
-         end if;
-         if not (da.dtipus_dt.td = ts_arr) then
-            raise error_array;
-         end if;
-         p := td(ida).s;
-         pp := 0;
-         while p /= 0 loop
-            pp := p;
-            p := te(p).s;
-         end loop;
+   procedure posa_index (ts: in out taula_simbols; ida: in id_nom; di: in descripcio) is
+      td: taula_descripcio renames ts.td;
+      te: taula_expansio renames ts.te;
+      ta: taula_ambits renames ts.ta;
+      da: descripcio;
+      p, pp: index_expansio;
+      prof : niv_prof renames ts.prof;
+      ne: index_expansio;
+   begin
+      da := td(ida).d;
+      if not (da.td = dtipus) then
+         raise error_array;
+      end if;
+      if not (da.dtipus_dt.td = ts_arr) then
+         raise error_array;
+      end if;
+      p := td(ida).s;
+      pp := 0;
+      while p /= 0 loop
+         pp := p;
+         p := te(p).s;
+      end loop;
+      Ne := Ta(Prof);
+      Ne := Ne + 1;
+      ta(prof) := ne;
+      te(ne).id := 0;
+      te(ne).prof := -1;
+      te(ne).d := di;
+      te(ne).s := 0;
+      if pp = 0 then
+         td(ida).s := ne;
+      else
+         te(pp).s := ne;
+      end if;
+   end posa_index;
+
+   procedure primer_index (ts: in taula_simbols; ida: in id_nom; it: out index_expansio) is
+      td: taula_descripcio renames ts.td;
+      da: descripcio;
+   begin
+      da := td(ida).d;
+      if not (da.td = dtipus and then da.dtipus_dt.td = ts_arr) then
+         raise error_array;
+      end if;
+      it := td(ida).s;
+   end primer_index;
+
+
+
+   procedure següent_index (ts: in taula_simbols; it: in out index_expansio) is
+      te: taula_expansio renames ts.te;
+   begin
+      it := te(it).s;
+   end següent_index;
+
+
+   function es_valid (it: in index_expansio) return boolean is
+   begin
+      return it /= 0;
+   end es_valid;
+
+   procedure consulta_index (ts: in taula_simbols; it: in index_expansio; di: out descripcio) is
+      te: taula_expansio renames ts.te;
+   begin
+      di := te(it).d;
+   end consulta_index;
+
+
+   procedure posar_paramf (ts: in out taula_simbols; idproc, idparf: in id_nom; dparf: in descripcio; error: out boolean) is
+      td: taula_descripcio renames ts.td;
+      te: taula_expansio renames ts.te;
+      ta: taula_ambits renames ts.ta;
+      dp: descripcio;
+      p,pp: index_expansio;
+      prof : niv_prof renames ts.prof;
+      ne : index_expansio;
+   begin
+      dp := td(idproc).d;
+      if dp.td /= dproc then
+         raise error_proc;
+      end if;
+      p := td(idproc).s;
+      pp := 0;
+      while p /= 0 and then te(p).id /= idparf loop
+         pp := p;
+         p := te(p).s;
+      end loop;
+      error := (p /= 0);
+      if not error then
          Ne := Ta(Prof);
          Ne := Ne + 1;
          ta(prof) := ne;
-         te(ne).id := 0;
-         te(ne).prof := -1;
-         te(ne).d := di;
-         te(ne).s := 0;
+         te(ne).id := idparf; te(ne).prof := -1; te(ne).d := dparf; te(ne).s := 0;
          if pp = 0 then
-            td(ida).s := ne;--
+            td(idproc).s := ne;
          else
-            te(pp).s := ne;-----------
+            te(pp).s := ne;
          end if;
-      end posa_index;
+      end if;
+   end posar_paramf;
 
-      procedure primer_index (ts: in taula_simbols; ida: in id_nom; it: out index_expansio) is
-         td: taula_descripcio renames ts.td;
-         da: descripcio;
-      begin
-         da := td(ida).d;
-         if not (da.td = dtipus and then da.dtipus_dt.td = ts_arr) then
-            raise error_array;
-         end if;
-         it := td(ida).s;
-      end primer_index;
+   procedure primer_paramf (ts: in taula_simbols; idproc: in id_nom; it: out index_expansio) is
+      td: taula_descripcio renames ts.td;
+      d: descripcio;
+   begin
+      d := td(idproc).d;
+      if d.td /= dproc then
+         raise error_proc;
+      end if;
+      it := td(idproc).s;
+   end primer_paramf;
 
+   procedure següent_paramf (ts: in taula_simbols; it: in out index_expansio) is
+      te: taula_expansio renames ts.te;
+   begin
+      it := te(it).s;
+   end següent_paramf;
 
-
-      procedure següent_index (ts: in taula_simbols; it: in out index_expansio) is
-         te: taula_expansio renames ts.te;
-      begin
-         it := te(it).s;
-      end següent_index;
-
-
-      function es_valid (it: in index_expansio) return boolean is
-      begin
-         return it /= 0;
-      end es_valid;
-
-      procedure consulta_index (ts: in taula_simbols; it: in index_expansio; di: out descripcio) is
-         te: taula_expansio renames ts.te;
-      begin
-         di := te(it).d;
-      end consulta_index;
-
-
-      procedure posar_paramf (ts: in out taula_simbols; idproc, idparf: in id_nom; dparf: in descripcio; error: out boolean) is
-         td: taula_descripcio renames ts.td;
-         te: taula_expansio renames ts.te;
-         ta: taula_ambits renames ts.ta;
-         dp: descripcio;
-         p,pp: index_expansio;
-         prof : niv_prof renames ts.prof;
-         ne : index_expansio;
-      begin
-         dp := td(idproc).d;
-         if dp.td /= dproc then
-            raise error_proc;
-         end if;
-         p := td(idproc).s;
-         pp := 0;
-         while p /= 0 and then te(p).id /= idparf loop
-            pp := p;
-            p := te(p).s;
-         end loop;
-         error := (p /= 0);
-         if not error then
-            Ne := Ta(Prof);
-            Ne := Ne + 1;
-            ta(prof) := ne;
-            te(ne).id := idparf; te(ne).prof := -1; te(ne).d := dparf; te(ne).s := 0;
-            if pp = 0 then
-               td(idproc).s := ne;
-            else
-               te(pp).s := ne;
-            end if;
-         end if;
-      end posar_paramf;
-
-      procedure primer_paramf (ts: in taula_simbols; idproc: in id_nom; it: out index_expansio) is
-         td: taula_descripcio renames ts.td;
-         d: descripcio;
-      begin
-         d := td(idproc).d;
-         if d.td /= dproc then
-            raise error_proc;
-         end if;
-         it := td(idproc).s;
-      end primer_paramf;
-
-      procedure següent_paramf (ts: in taula_simbols; it: in out index_expansio) is
-         te: taula_expansio renames ts.te;
-      begin
-         it := te(it).s;
-      end següent_paramf;
-
-      procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio) is
-         te: taula_expansio renames ts.te;
-      begin
-         idparf := te(it).id;
-         dparf := te(it).d;
-      end consulta_paramf;
+   procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio) is
+      te: taula_expansio renames ts.te;
+   begin
+      idparf := te(it).id;
+      dparf := te(it).d;
+   end consulta_paramf;
 
 
 end d_taulasimbols;

@@ -67,9 +67,9 @@ P:
 
 DECL_PROC:
      pc_procedure ENCAP pc_is 
-        DECLARACIONES 
+        DECLARACIONS 
      pc_begin 
-        SENTENCIAS 
+        SENTENCIES 
      pc_end id s_punticoma
      {rs_decl_proc ($$, $2, $4, $6, $8);}
   ;
