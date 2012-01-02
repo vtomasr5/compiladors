@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+cp -rf ../*.exe $HOME/.wine/drive_c/windows/system32/
+
+wine ../ayacc.exe a_sintactic.y Off Off On On On
+
+gnatchop -w a_sintactic.a
+gnatchop -w a_sintactic_error_report.a
+
+mv a_sintactic.a ../lib/
+mv a_sintactic.verbose ../lib/
+mv a_sintactic_error_report.a* ../lib/
+mv a_sintactic_shift_reduce.ads ../lib/
+mv a_sintactic_tokens.ads ../lib/
+mv a_sintactic_goto.ads ../lib/
+mv a_sintactic.ad* ../lib/

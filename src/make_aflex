@@ -1,15 +1,19 @@
 #!/bin/sh
 
+set -e
+
 wine aflex.exe -E lexic.l
-gnatchop lexic.a
-gnatchop lexic_dfa.a
-gnatchop lexic_io.a
-mv lexic.a "../lib"
-mv lexic_dfa.a "../lib"
-mv lexic_io.a "../lib"
-mv a_lexic.adb "../lib"
-mv a_lexic.ads "../lib"
-mv lexic_dfa.adb "../lib"
-mv lexic_dfa.ads "../lib"
-mv lexic_io.adb "../lib"
-mv lexic_io.ads "../lib"
+
+gnatchop -w lexic.a
+gnatchop -w lexic_dfa.a
+gnatchop -w lexic_io.a
+
+mv lexic.a ../lib/
+mv lexic_dfa.a ../lib/
+mv lexic_io.a ../lib/
+mv a_lexic.adb ../lib/
+mv a_lexic.ads ../lib/
+mv lexic_dfa.adb ../lib/
+mv lexic_dfa.ads ../lib/
+mv lexic_io.adb ../lib/
+mv lexic_io.ads ../lib/

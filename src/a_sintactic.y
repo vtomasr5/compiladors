@@ -290,23 +290,23 @@ E:
 
 %%
 
-package analitzador_sintactic is
+package a_sintactic is
 	procedure yyparse;
 	procedure yyerror (s: in string);
-end analitzador_sintactic;
+end a_sintactic;
 
-with text_io, asintac_tokens, asintac_shift_reduce, asintac_goto, analitzador_lexic, semantica.c_arbre_sintactic, semantica.missatges, decls.d_arbre_sintactic;
-use text_io, asintac_tokens, asintac_shift_reduce, asintac_goto, analitzador_lexic, semantica.c_arbre_sintactic, semantica.missatges, decls.d_arbre_sintactic;
+with text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic, d_arbre;
+use text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic, d_arbre;
 
-package body analitzador_sintactic is
+package body a_sintactic is
 ##
 procedure yyerror(s: in string) is
 begin
    case yylval.tnd is
-      when Nident => Missatge_Errorsintactic (Yylval.Pos1.Lin, Yylval.Pos1.Col);
-      when Nlit => Missatge_Errorsintactic (Yylval.Pos2.Lin, Yylval.Pos2.Col);
-      when Natom => Missatge_Errorsintactic (Yylval.Pos3.Lin, Yylval.Pos3.Col);
+      when Nident => Missatge_Error_Sintactic (Yylval.Pos1.Lin, Yylval.Pos1.Col);
+      when Nlit => Missatge_Error_Sintactic (Yylval.Pos2.Lin, Yylval.Pos2.Col);
+      when Natom => Missatge_Erro_Sintactic (Yylval.Pos3.Lin, Yylval.Pos3.Col);
       when others => null;
    end case;
 end yyerror;
-end analitzador_sintactic;  
+end a_sintactic;
