@@ -1,8 +1,5 @@
-with  Semantica.c_Arbre_Sintactic;
-use   Semantica.c_Arbre_Sintactic;
 package A_Sintactic_Tokens is
 
-subtype yystype is semantica.C_arbre_sintactic.pnode;
     YYLVal, YYVal : YYSType; 
     type Token is
         (End_Of_Input, Error, Id, Literal,

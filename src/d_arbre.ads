@@ -1,15 +1,18 @@
 with d_generals, d_descripcio;
-use d_generalss, d_descripcio;
+use d_generals, d_descripcio;
+
 package d_arbre is
    -- hay mas cosas que en los apuntes
    type Node;
    type Pnode is access Node;
    type Tnode is (Nprog, Ndproc, Nident, nlit, natom, Nencap, Ncenc, Nl_Param,
-                  Nparam, Ntipus_Param, ndecls, ndecl, Ndecl_Const, Ndecl_Var, Nvalor, Nlista_Id,
-                  ndecl_tipus, Ndecl_Subr, Ndecl_Array, Ndecl_Record, Ndecl_Camps, Ndecl_Camp, Ncond,
-                  Nsents, Nsent, Nasig, Nref, Ncalfs, Ncalf, Niterac, Nllam_Proc, Nlexp,
-                  Nsuma, Nresta, Nmult, Ndiv, Nmod, Nand, Nor, Nmajor, Nmenor, Nmajorigual, Nmenorigual,
-                  Ndif, Nigual, Nneg, Nparent, Nnot, Neref, Nelit   );
+                  Nparam, Ntipus_Param, ndecls, ndecl, Ndecl_Const, Ndecl_Var,
+                  Nvalor, Nlista_Id, Ndecl_tipus, Ndecl_Subr, Ndecl_Array,
+                  Ndecl_Record, Ndecl_Camps, Ndecl_Camp, Ncond, Nsents, Nsent,
+                  Nasig, Nref, Ncalfs, Ncalf, Niterac, Nllam_Proc, Nlexp, Nsuma,
+                  Nresta, Nmult, Ndiv, Nmod, Nand, Nor, Nmajor, Nmenor,
+                  Nmajorigual, Nmenorigual, Ndif, Nigual, Nneg, Nparent, Nnot,
+                  Neref, Nelit);
 
    type T_Param is (P_In, P_In_Out);
 

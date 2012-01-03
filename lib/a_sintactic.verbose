@@ -2,26 +2,26 @@
 State  0
 
 Kernel
-( 0)  $accept	: _ P END_OF_INPUT 
+( 0)  $accept	: _ PROGRAMA END_OF_INPUT 
 
 Closure
-( 0)  $accept	: _ P END_OF_INPUT 
-( 1)  P	: _ DECL_PROC 
+( 0)  $accept	: _ PROGRAMA END_OF_INPUT 
+( 1)  PROGRAMA	: _ DECL_PROC 
 ( 2)  DECL_PROC	: _ PC_PROCEDURE ENCAP PC_IS DECLARACIONS PC_BEGIN SENTENCIES PC_END ID S_PUNTICOMA 
 
 
 	DECL_PROC 	goto  1
-	P 	goto  3
+	PROGRAMA 	goto  3
  	PC_PROCEDURE 	shift  2
  	default 	error
 ------------------
 State  1
 
 Kernel
-( 1)  P	: DECL_PROC _ 
+( 1)  PROGRAMA	: DECL_PROC _ 
 
 Closure
-( 1)  P	: DECL_PROC _ 
+( 1)  PROGRAMA	: DECL_PROC _ 
 
 
  	default 	reduce  1
@@ -43,10 +43,10 @@ Closure
 State  3
 
 Kernel
-( 0)  $accept	: P _ END_OF_INPUT 
+( 0)  $accept	: PROGRAMA _ END_OF_INPUT 
 
 Closure
-( 0)  $accept	: P _ END_OF_INPUT 
+( 0)  $accept	: PROGRAMA _ END_OF_INPUT 
 
 
  	END_OF_INPUT 	accept
@@ -82,10 +82,10 @@ Closure
 State  6
 
 Kernel
-( 0)  $accept	: P END_OF_INPUT _ 
+( 0)  $accept	: PROGRAMA END_OF_INPUT _ 
 
 Closure
-( 0)  $accept	: P END_OF_INPUT _ 
+( 0)  $accept	: PROGRAMA END_OF_INPUT _ 
 
 
  	default 	error

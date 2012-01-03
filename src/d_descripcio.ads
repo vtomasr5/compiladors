@@ -2,7 +2,7 @@ with d_generals;
 use d_generals;
 
 package d_descripcio is
-   pragma Pure;
+   --     pragma Pure;
 
    type tipus_descripcio is (dnul_la, dconst, dvar, dtipus, dproc, dparam, dcamp, dindex);
 
@@ -20,7 +20,7 @@ package d_descripcio is
       end case;
    end record;
 
-   type descripcio (td : tipus_descripcio := dnul_la) is record
+   type descripcio (td: tipus_descripcio := dnul_la) is record
       case td is
          when Dnul_La =>
             null;

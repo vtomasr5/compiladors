@@ -45,9 +45,6 @@
 %token s_igual
 %token s_assignacio
 
-%with semantica.C_arbre_sintactic;
-%use semantica.C_arbre_sintactic;
-
 %left pc_or
 %left pc_and
 %left pc_not
@@ -56,11 +53,9 @@
 %left menysunitari
 %left s_per s_divisio pc_mod
 
-{subtype yystype is semantica.C_arbre_sintactic.pnode;}
-
 %%
 
-P:
+PROGRAMA:
      DECL_PROC   
      {rs_p ($$, $1);}
      ;

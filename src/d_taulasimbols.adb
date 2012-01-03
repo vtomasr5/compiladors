@@ -182,11 +182,11 @@ package body d_taulasimbols is
 
 
 
-   procedure següent_index (ts: in taula_simbols; it: in out index_expansio) is
+   procedure seguent_index (ts: in taula_simbols; it: in out index_expansio) is
       te: taula_expansio renames ts.te;
    begin
       it := te(it).s;
-   end següent_index;
+   end seguent_index;
 
 
    function es_valid (it: in index_expansio) return boolean is
@@ -245,11 +245,11 @@ package body d_taulasimbols is
       it := td(idproc).s;
    end primer_paramf;
 
-   procedure següent_paramf (ts: in taula_simbols; it: in out index_expansio) is
+   procedure seguent_paramf (ts: in taula_simbols; it: in out index_expansio) is
       te: taula_expansio renames ts.te;
    begin
       it := te(it).s;
-   end següent_paramf;
+   end seguent_paramf;
 
    procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio) is
       te: taula_expansio renames ts.te;
