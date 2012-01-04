@@ -7,6 +7,7 @@ with d_taulanoms; use d_taulanoms;
 
 procedure Principal is
    Tk: Token:= Error;
+   id1, id2, id3, id4, id5, id6, id7, id8 : id_noms;
 begin
    t_buida(t_noms);
 

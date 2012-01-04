@@ -2,7 +2,6 @@ with d_generals, d_descripcio;
 use d_generals, d_descripcio;
 
 package d_arbre is
-   -- hay mas cosas que en los apuntes
    type Node;
    type Pnode is access Node;
    type Tnode is (Nprog, Ndproc, Nident, nlit, natom, Nencap, Ncenc, Nl_Param,

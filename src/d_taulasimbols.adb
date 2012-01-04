@@ -53,21 +53,21 @@ package body d_taulasimbols is
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
       prof: niv_prof renames ts.prof;
-      ie: index_expansio;
+      li: index_expansio; -- limit inicial
       Id: Id_Nom;
-      le: index_expansio;
+      lf: index_expansio; -- limit final
    begin
-      ie := ta(prof);
+      li := ta(prof);
       Prof := Prof-1;
-      le := ta(prof);
-      while ie > le  loop
-         if te(ie).prof /= -1 then
-            id := te(ie).id;
-            td(id).prof := te(ie).prof;
-            td(id).d := te(ie).d;
-            td(id).s := te(ie).s;
+      lf := ta(prof);
+      while li > lf loop
+         if te(li).prof /= -1 then
+            id := te(li).id;
+            td(id).prof := te(li).prof;
+            td(id).d := te(li).d;
+            td(id).s := te(li).s;
          end if;
-         ie := ie - 1;
+         li := li - 1;
       end loop;
    end surt_bloc;
 
@@ -92,13 +92,13 @@ package body d_taulasimbols is
       end loop;
       error := ie /= 0;
       if not error then
-         Ne := Ta(Prof);
+         Ne := Ta(Prof); -- reservam espai
          Ne := Ne + 1;
          ta(prof) := ne;
-         te(ne).id := idc;
+         te(ne).id := idc; -- guardam les dades
          te(ne).d := dc;
          te(ne).prof := -1;
-         te(ne).s := td(idr).s;
+         te(ne).s := td(idr).s; -- ajustam els enllaços
          td(idr).s := ne;
       end if;
    end posa_camp;
@@ -180,14 +180,11 @@ package body d_taulasimbols is
       it := td(ida).s;
    end primer_index;
 
-
-
    procedure seguent_index (ts: in taula_simbols; it: in out index_expansio) is
       te: taula_expansio renames ts.te;
    begin
       it := te(it).s;
    end seguent_index;
-
 
    function es_valid (it: in index_expansio) return boolean is
    begin
@@ -199,7 +196,6 @@ package body d_taulasimbols is
    begin
       di := te(it).d;
    end consulta_index;
-
 
    procedure posar_paramf (ts: in out taula_simbols; idproc, idparf: in id_nom; dparf: in descripcio; error: out boolean) is
       td: taula_descripcio renames ts.td;
@@ -257,6 +253,5 @@ package body d_taulasimbols is
       idparf := te(it).id;
       dparf := te(it).d;
    end consulta_paramf;
-
 
 end d_taulasimbols;
