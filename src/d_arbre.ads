@@ -16,7 +16,7 @@ package d_arbre is
    type T_Param is (P_In, P_In_Out);
 
    type mode is (mdvar, mdconst, mdproc, mdresult);
-   º
+   
    type Posicio is record
       Lin, Col: Natural;
    end record;
