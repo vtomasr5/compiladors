@@ -14,7 +14,10 @@ package body d_taulasimbols is
       ta(prof) := 0;
    end tbuida;
 
-   procedure posa (ts : in out taula_simbols; id : in id_nom; d : in descripcio; error : out boolean) is
+   procedure posa (ts : in out taula_simbols;
+                   id : in id_nom;
+                   d : in descripcio;
+                   error : out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -71,7 +74,10 @@ package body d_taulasimbols is
       end loop;
    end surt_bloc;
 
-   procedure posa_camp (ts : in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean) is
+   procedure posa_camp (ts : in out taula_simbols;
+                        idr,idc: in id_nom;
+                        dc: in descripcio;
+                        error: out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -103,7 +109,8 @@ package body d_taulasimbols is
       end if;
    end posa_camp;
 
-   function consulta_camp (ts: in taula_simbols; idr, idc: in id_nom) return descripcio is
+   function consulta_camp (ts: in taula_simbols;
+                           idr, idc: in id_nom) return descripcio is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ie: index_expansio;
@@ -169,7 +176,9 @@ package body d_taulasimbols is
       end if;
    end posa_index;
 
-   procedure primer_index (ts: in taula_simbols; ida: in id_nom; it: out index_expansio) is
+   procedure primer_index (ts: in taula_simbols;
+                           ida: in id_nom;
+                           it: out index_expansio) is
       td: taula_descripcio renames ts.td;
       da: descripcio;
    begin
@@ -191,13 +200,18 @@ package body d_taulasimbols is
       return it /= 0;
    end es_valid;
 
-   procedure consulta_index (ts: in taula_simbols; it: in index_expansio; di: out descripcio) is
+   procedure consulta_index (ts: in taula_simbols;
+                             it: in index_expansio;
+                             di: out descripcio) is
       te: taula_expansio renames ts.te;
    begin
       di := te(it).d;
    end consulta_index;
 
-   procedure posar_paramf (ts: in out taula_simbols; idproc, idparf: in id_nom; dparf: in descripcio; error: out boolean) is
+   procedure posar_paramf (ts: in out taula_simbols;
+                           idproc, idparf: in id_nom;
+                           dparf: in descripcio;
+                           error: out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -230,7 +244,9 @@ package body d_taulasimbols is
       end if;
    end posar_paramf;
 
-   procedure primer_paramf (ts: in taula_simbols; idproc: in id_nom; it: out index_expansio) is
+   procedure primer_paramf (ts: in taula_simbols;
+                            idproc: in id_nom;
+                            it: out index_expansio) is
       td: taula_descripcio renames ts.td;
       d: descripcio;
    begin
@@ -247,7 +263,10 @@ package body d_taulasimbols is
       it := te(it).s;
    end seguent_paramf;
 
-   procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio) is
+   procedure consulta_paramf (ts: in taula_simbols;
+                              it: in index_expansio;
+                              idparf: out id_nom;
+                              dparf: out descripcio) is
       te: taula_expansio renames ts.te;
    begin
       idparf := te(it).id;

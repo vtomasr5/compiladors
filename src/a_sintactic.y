@@ -57,7 +57,7 @@
 
 PROGRAMA:
      DECL_PROC   
-     {rs_p ($$, $1);}
+     {rs_prog ($$, $1);}
      ;
 
 DECL_PROC:
@@ -216,15 +216,15 @@ REF:
 
 QUALIFICADORS:
      QUALIFICADORS QUALIFICADOR
-     {rs_calfs ($$, $1, $2);}
-  |  {rs_calfs ($$);}
+     {rs_qualifs ($$, $1, $2);}
+  |  {rs_qualifs ($$);}
   ;
 
 QUALIFICADOR:
      s_punt id
-     {rs_calf1 ($$, $2);}
+     {rs_qualif1 ($$, $2);}
   |  s_parentesiobert LE s_parentesitancat
-     {rs_calf2 ($$, $2);}
+     {rs_qualif2 ($$, $2);}
   ;
 
 LE:
@@ -236,12 +236,12 @@ LE:
 
 ITERACIO:
      pc_while E pc_loop SENTENCIES pc_end pc_loop s_punticoma
-     {rs_iterac ($$, $2, $4);}
+     {rs_iter ($$, $2, $4);}
   ;
 
 CRIDA_PROC:
      REF s_punticoma
-     {rs_llam_proc ($$, $1);} 
+     {rs_crida_proc ($$, $1);}
   ;
 
 E:
@@ -287,7 +287,6 @@ E:
 
 package a_sintactic is
 	procedure yyparse;
-	procedure yyerror (s: in string);
 end a_sintactic;
 
 with text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic, d_arbre;
@@ -295,13 +294,4 @@ use text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_l
 
 package body a_sintactic is
 ##
-procedure yyerror(s: in string) is
-begin
-   case yylval.tnd is
-      when Nident => Missatge_Error_Sintactic (Yylval.Pos1.Lin, Yylval.Pos1.Col);
-      when Nlit => Missatge_Error_Sintactic (Yylval.Pos2.Lin, Yylval.Pos2.Col);
-      when Natom => Missatge_Erro_Sintactic (Yylval.Pos3.Lin, Yylval.Pos3.Col);
-      when others => null;
-   end case;
-end yyerror;
 end a_sintactic;

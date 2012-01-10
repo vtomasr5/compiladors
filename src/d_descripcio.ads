@@ -2,22 +2,20 @@ with d_generals;
 use d_generals;
 
 package d_descripcio is
-   --     pragma Pure;
 
    type tipus_descripcio is (dnul_la, dconst, dvar, dtipus, dproc, darg_in, darg, dcamp, dindex);
 
-   --   type t_descr_tipus is (ts_nul, ts_bool, ts_car, ts_enter, ts_arr, ts_rec, ts_procc, ts_procp);
    type tipus_subjacent is (ts_nul, ts_bool, ts_car, ts_enter, ts_arr, ts_rec, ts_procc, ts_procp);
 
    type descr_tipus (td: tipus_subjacent := ts_nul) is record
-      ocup: despl; -- ocupació en bytes
+      ocup: desplacament; -- ocupació en bytes
       case td is
          when ts_nul | ts_rec | ts_procc | ts_procp => null;
          when ts_bool | ts_car | ts_enter =>
             li, ls: valor;
          when ts_arr =>
             tcomp: id_nom;
-            b: valor;
+            --              b: valor;
       end case;
    end record;
 
@@ -46,7 +44,7 @@ package d_descripcio is
             Darg_nv: id_nom;
             Darg_mode : mode_arg;
          when Dcamp =>
-            Dcamp_Ds: Despl;
+            Dcamp_Ds: Desplacament;
             dcamp_tp : id_nom;
          when Dindex =>
             dindex_id: id_nom;

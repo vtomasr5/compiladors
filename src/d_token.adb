@@ -2,9 +2,10 @@ with d_taulanoms; use d_taulanoms;
 with d_generals; use d_generals;
 with Ada.Text_Io; use Ada.Text_Io;
 with Ada.Integer_Text_Io; use Ada.Integer_Text_Io;
-
+-- NO PRINT
 package body D_Token is
- procedure Rl_Identificador (A:out atribut; Nom: in String; L,C: in Natural) is
+
+   procedure Rl_Identificador (A:out atribut; Nom: in String; L,C: in Natural) is
       Id: id_nom;
       p: posicio;
    begin

@@ -15,7 +15,7 @@ package d_generals is
    type id_str is new Natural range 1..max_str;
 
    type Valor is new Integer;
-   type Despl is new Integer;
+   type desplacament is new Integer;
 
    type num_var is new Integer range 0..Max_Num_Var;
    type Num_Proc is new Integer range 0..Max_Num_Proc;

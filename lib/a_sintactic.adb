@@ -1154,7 +1154,7 @@ begin
 
 when  1 =>
 --#line  60
-rs_p (
+rs_prog (
 yyval, 
 yy.value_stack(yy.tos));
 
@@ -1433,25 +1433,25 @@ yy.value_stack(yy.tos));
 
 when  44 =>
 --#line  219
-rs_calfs (
+rs_qualifs (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  45 =>
 --#line  220
-rs_calfs (
+rs_qualifs (
 yyval);
 
 when  46 =>
 --#line  225
-rs_calf1 (
+rs_qualif1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  47 =>
 --#line  227
-rs_calf2 (
+rs_qualif2 (
 yyval, 
 yy.value_stack(yy.tos-1));
 
@@ -1470,14 +1470,14 @@ yy.value_stack(yy.tos));
 
 when  50 =>
 --#line  239
-rs_iterac (
+rs_iter (
 yyval, 
 yy.value_stack(yy.tos-5), 
 yy.value_stack(yy.tos-3));
 
 when  51 =>
 --#line  244
-rs_llam_proc (
+rs_crida_proc (
 yyval, 
 yy.value_stack(yy.tos-1));
 
@@ -1672,13 +1672,4 @@ yy.value_stack(yy.tos));
 -- END OF UMASS CODES.
 
 end yyparse;
-procedure yyerror(s: in string) is
-begin
-   case yylval.tnd is
-      when Nident => Missatge_Error_Sintactic (Yylval.Pos1.Lin, Yylval.Pos1.Col);
-      when Nlit => Missatge_Error_Sintactic (Yylval.Pos2.Lin, Yylval.Pos2.Col);
-      when Natom => Missatge_Erro_Sintactic (Yylval.Pos3.Lin, Yylval.Pos3.Col);
-      when others => null;
-   end case;
-end yyerror;
 end a_sintactic;

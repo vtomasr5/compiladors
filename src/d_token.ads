@@ -10,33 +10,31 @@ package d_Token is
                   s_mes, s_menys, s_per, s_divisio, s_igual, s_menor, s_major,
                   s_menorigual, s_majorigual, s_coma, s_punt, s_assignacio,
                   s_diferent, s_puntpunt, id, literal);
-
-   type Tipus_Atribut is (A_Ident, A_Lit, A_Atom);
-
-   type Posicio is record
-      Lin, Col: Natural;
-   end record;
-
-   type Tipus_Subj is (Ts_Enter, Ts_Caracter, Ts_String);
-
-   type valor is new Integer;
-
-   type Atribut (Ta: Tipus_Atribut:= A_Atom) is record
-      P: Posicio;
-      case Ta is
-         when A_Ident => Id: id_nom;
-         when A_Lit => Ts: Tipus_Subj; Vl:valor;
-         when A_Atom => null;
-      end case;
-   end record;
-
-   procedure Rl_Identificador (A: out atribut; Nom: in String; L,C: in Natural);
-   procedure Rl_literal_string (A: out atribut; Nom: in String; L,C: in Natural);
-   procedure Rl_literal_caracter (A: out atribut; Nom: in String; L,C: in Natural);
-   procedure Rl_literal_enter (A: out atribut; Nom: in String; L,C: in Natural);
-   procedure Rl_Atom (A: out atribut; L,C: in Natural);
-
-   A: Atribut;
-private
-   t_n: t_noms;
+   -- NO PRINT
+   --     type Tipus_Atribut is (A_Ident, A_Lit, A_Atom);
+   --
+   --     type Posicio is record
+   --        Lin, Col: Natural;
+   --     end record;
+   --
+   --     type valor is new Integer;
+   --
+   --     type Atribut (Ta: Tipus_Atribut:= A_Atom) is record
+   --        P: Posicio;
+   --        case Ta is
+   --           when A_Ident => Id: id_nom;
+   --           when A_Lit => Ts: Tipus_Subj; Vl:valor;
+   --           when A_Atom => null;
+   --        end case;
+   --     end record;
+   --
+   --     procedure Rl_Identificador (A: out atribut; Nom: in String; L,C: in Natural);
+   --     procedure Rl_literal_string (A: out atribut; Nom: in String; L,C: in Natural);
+   --     procedure Rl_literal_caracter (A: out atribut; Nom: in String; L,C: in Natural);
+   --     procedure Rl_literal_enter (A: out atribut; Nom: in String; L,C: in Natural);
+   --     procedure Rl_Atom (A: out atribut; L,C: in Natural);
+   --
+   --     A: Atribut;
+   --  private
+   --     t_n: t_noms;
 end d_Token;

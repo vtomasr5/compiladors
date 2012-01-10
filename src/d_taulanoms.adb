@@ -72,25 +72,14 @@ package body d_taulanoms is
    begin
       hash := id_nom (Hashing (Nom));
       valor_td := Td (hash);
-      put ("nom: " & nom);
-      --Put (Nom & " hash" & id_nom'image( hash ) & " valor_td: " & id_nom'image( valor_td ));
       while valor_td /= 0 and not Existeix(Nom,Tc,Tid(valor_td).Ptr_t_car) loop
-         -- COLISION
-         --           hash:= hash + 3; -- saltamos
-         --           valor_td:= Td (hash);
          valor_td := Tid(valor_td).seg;
-         --Put ("COLISION" & id_nom'image( valor_td ));
-         new_line;
       end loop;
 
       if valor_td /= 0 then
-         -- YA EXISTE
          id_out := valor_td;
-         --Put(" EXISTE: " & id_nom'image(valor_td)); new_line;
       else
-
          Index_tid := Index_tid +1;
-         --Put(" NEW i_tid: " & id_nom'image( Index_tid) & " td(hash): " & id_nom'image( Td (Hash)));new_line;
          Tid(Index_tid).seg := Td (Hash);
          Td (hash) := Index_tid;
          Id_out := Index_tid;
