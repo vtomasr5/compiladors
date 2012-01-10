@@ -9,14 +9,14 @@ package d_taulasimbols is
 
    type taula_simbols is limited private;
 
-   procedure tbuida(ts : out taula_simbols);
-   procedure posa (ts : in out taula_simbols; id : in id_nom; d : in descripcio; error : out boolean);
-   function consultar (ts : in taula_simbols; id : in id_nom) return descripcio;
+   procedure tbuida(ts: out taula_simbols);
+   procedure posa (ts: in out taula_simbols; id: in id_nom; d: in descripcio; error: out boolean);
+   function consultar (ts: in taula_simbols; id: in id_nom) return descripcio;
 
-   procedure entra_bloc (ts : in out taula_simbols);
-   procedure surt_bloc (ts : in out taula_simbols);
+   procedure entra_bloc (ts: in out taula_simbols);
+   procedure surt_bloc (ts: in out taula_simbols);
 
-   procedure posa_camp (ts : in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean);
+   procedure posa_camp (ts: in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean);
    function consulta_Camp (Ts: in Taula_Simbols; Idr, Idc: in Id_Nom) return Descripcio;
    procedure actualizar(ts: in out taula_simbols; id: in id_nom; d: in descripcio);
 
@@ -31,7 +31,7 @@ package d_taulasimbols is
    procedure seguent_paramf (ts: in taula_simbols; it: in out index_expansio);
    procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio);
 
-   error_record, error_array, error_proc : exception;
+   error_record, error_array, error_proc: exception;
 
 private
 
@@ -40,8 +40,8 @@ private
    type index_expansio is new integer range 0..max_noms*max_prof;
 
    type bloc_tdescr is record
-      prof : niv_prof;
-      d : descripcio;
+      prof: niv_prof;
+      d: descripcio;
       s: index_expansio;
    end record;
 
@@ -53,7 +53,7 @@ private
       prof: niv_prof;
       d: descripcio;
       id: id_nom;
-      s : index_expansio;
+      s: index_expansio;
    end record;
 
    type taula_expansio is array (1..index_expansio'last) of bloc_texp;

@@ -289,8 +289,8 @@ package a_sintactic is
 	procedure yyparse;
 end a_sintactic;
 
-with text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic, d_arbre;
-use text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic, d_arbre;
+with Ada.text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic;
+use Ada.text_io, a_sintactic_tokens, a_sintactic_shift_reduce, a_sintactic_goto, a_lexic;
 
 package body a_sintactic is
 ##

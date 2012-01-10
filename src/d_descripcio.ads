@@ -26,14 +26,14 @@ package d_descripcio is
          when Dnul_La =>
             null;
          when Dconst =>
-            Dconst_Tp : Id_Nom;
-            Dconst_Vl : Valor;
-            dconst_nv : num_var;
+            Dconst_Tp: Id_Nom;
+            Dconst_Vl: Valor;
+            dconst_nv: num_var;
          when Dvar =>
-            Dvar_Tp : Id_Nom;
-            dvar_nv : num_var;
+            Dvar_Tp: Id_Nom;
+            dvar_nv: num_var;
          when Dtipus =>
-            dtipus_dt : descr_tipus;
+            dtipus_dt: descr_tipus;
          when Dproc =>
             dproc_np: num_proc;
          when Darg_in =>
@@ -45,7 +45,7 @@ package d_descripcio is
             Darg_mode : mode_arg;
          when Dcamp =>
             Dcamp_Ds: Desplacament;
-            dcamp_tp : id_nom;
+            dcamp_tp: id_nom;
          when Dindex =>
             dindex_id: id_nom;
       end case;

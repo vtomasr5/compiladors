@@ -16,7 +16,7 @@ package d_arbre is
    type T_Param is (P_In, P_In_Out);
 
    type mode is (mdvar, mdconst, mdproc, mdresult);
-   
+
    type Posicio is record
       Lin, Col: Natural;
    end record;
@@ -129,7 +129,7 @@ package d_arbre is
          when Nlexp =>
             Lexp_Pcontlista: Pnode;
             Lexp_Pexp: Pnode;
-         when Nsuma .. Nnot =>
+         when Nsuma..Nnot =>
             N_Oper_Exp1: Pnode;
             N_Oper_Exp2: Pnode;
          when Neref | Nelit =>
