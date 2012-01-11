@@ -10,9 +10,9 @@ package d_taulanoms is
    ------------------------------------------
    procedure T_buida (tn: out t_noms);
    procedure Posa (tn: in out t_noms; Nom: in String; id_out: out id_nom);
-   procedure Posa_str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String);
+   procedure Posa_str (tn: in out t_noms; Nom: in String; id_out: out id_str);
    function Consultar (tn: in t_noms; id_tid: in id_nom) return String;
-   function Consultar_str (T_N: in T_Noms; Pos_Tc: in id_str) return String;
+   function Consultar_str (tn: in t_noms; pos_tc: in id_str) return String;
 
 private
    -- DEFINICIO DE TIPUS--

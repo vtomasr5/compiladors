@@ -102,17 +102,17 @@ package body d_taulanoms is
    end Consultar;
 
    -- Posa_str
-   procedure Posa_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String) is
-      Tc: T_Car renames T_N.Tc;
-      Max_Valor_car: Id_str renames T_N.index_tcar;
+   procedure Posa_Str (tn: in out T_Noms; Nom: in String;id_out: out id_str ) is
+      Tc: T_Car renames tn.Tc;
+      Max_Valor_car: Id_str renames tn.index_tcar;
    begin
-      Pos_Tc := Max_Valor_Car;
-      Afegir_tc (Token(Token'First+1..Token'Last-1), Tc, Max_Valor_Car);
+      id_out := Max_Valor_Car;
+      Afegir_tc (Nom(Nom'First+1..Nom'Last-1), Tc, Max_Valor_Car);
    end Posa_Str;
 
    -- Consultar_str
-   function Consultar_Str (T_N: in T_Noms; Pos_Tc: in id_str) return String is
-      Tc: T_Car renames T_N.Tc;
+   function Consultar_Str (tn: in T_Noms; pos_tc: in id_str) return String is
+      Tc: T_Car renames tn.Tc;
       index: id_str;
    begin
       index := pos_tc;
