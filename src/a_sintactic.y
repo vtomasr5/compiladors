@@ -45,12 +45,11 @@
 %token s_igual
 %token s_assignacio
 
-%left pc_or
-%left pc_and
+%left pc_or pc_and
 %left pc_not
 %nonassoc s_major s_majorigual s_menor s_menorigual s_diferent s_igual s_assignacio
 %left s_mes s_menys
-%left menysunitari
+%left menys_unitari
 %left s_per s_divisio pc_mod
 
 %%
@@ -58,7 +57,7 @@
 PROGRAMA:
      DECL_PROC   
      {rs_prog ($$, $1);}
-     ;
+  ;
 
 DECL_PROC:
      pc_procedure ENCAP pc_is 
@@ -155,7 +154,7 @@ DECL_TIPUS:
 
 DECL_SUBRANG:
      pc_type id pc_is pc_new id pc_range VALOR s_puntpunt VALOR s_punticoma
-     {rs_decl_subr ($$, $2, $5, $7, $9);}
+     {rs_decl_subrang ($$, $2, $5, $7, $9);}
   ;
 
 DECL_ARRAY:
@@ -189,7 +188,7 @@ SENTENCIES:
 SENTENCIA:
      CONDICIONAL
      {rs_sent1 ($$, $1);}
-  |  ASIGNACIO
+  |  ASSIGNACIO
      {rs_sent2 ($$, $1);}
   |  ITERACIO
      {rs_sent3 ($$, $1);}
@@ -204,9 +203,9 @@ CONDICIONAL:
      {rs_cond ($$, $2, $4, $6);}
   ;
 
-ASIGNACIO:
+ASSIGNACIO:
      REF s_assignacio E s_punticoma
-     {rs_asig ($$, $1, $3);}
+     {rs_assig ($$, $1, $3);}
   ;
 
 REF:
@@ -223,15 +222,15 @@ QUALIFICADORS:
 QUALIFICADOR:
      s_punt id
      {rs_qualif1 ($$, $2);}
-  |  s_parentesiobert LE s_parentesitancat
+  |  s_parentesiobert LLISTA_E s_parentesitancat
      {rs_qualif2 ($$, $2);}
   ;
 
-LE:
-     LE s_coma E
-     {rs_lexp ($$, $1, $3);}
+LLISTA_E:
+     LLISTA_E s_coma E
+     {rs_l_exp ($$, $1, $3);}
   |  E
-     {rs_lexp ($$, $1);}
+     {rs_l_exp ($$, $1);}
   ;
 
 ITERACIO:
@@ -271,7 +270,7 @@ E:
      {rs_dif ($$, $1, $3);}
   |  E s_igual E
      {rs_igual ($$, $1, $3);}
-  |  s_menys E %prec menysunitari
+  |  s_menys E %prec menys_unitari
      {rs_neg ($$, $2);}
   |  s_parentesiobert E s_parentesitancat
      {rs_parent ($$, $2);}

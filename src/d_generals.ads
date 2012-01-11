@@ -1,23 +1,23 @@
 package d_generals is
    ------------------------------
-   -- DECLARACIO DE CONSTANTS: --
+   -- declaracio de constants: --
    ------------------------------
    max_str: constant integer := 25000;
-   max_noms: constant Integer := 1005;
-   Max_Prof: constant Integer := 20;
-   Max_Num_Var: constant Integer := 500;
-   Max_Num_Proc: constant Integer := 100;
+   max_noms: constant integer := 1005;
+   max_prof: constant integer := 20;
+   max_num_var: constant integer := 500;
+   max_num_proc: constant integer := 100;
 
    ---------------------------
-   -- DECLARACIO DE TIPUS:  --
+   -- declaracio de tipus:  --
    ---------------------------
-   type id_nom is new Natural range 0..max_noms;
-   type id_str is new Natural range 1..max_str;
+   type id_nom is new natural range 0..max_noms;
+   type id_str is new natural range 1..max_str;
 
-   type Valor is new Integer;
-   type desplacament is new Integer;
+   type valor is new integer;
+   type desplacament is new integer;
 
-   type num_var is new Integer range 0..Max_Num_Var;
-   type Num_Proc is new Integer range 0..Max_Num_Proc;
+   type num_var is new integer range 0..max_num_var;
+   type num_proc is new integer range 0..max_num_proc;
 
 end d_generals;

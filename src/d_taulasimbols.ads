@@ -3,7 +3,7 @@ use d_generals, d_descripcio;
 
 package d_taulasimbols is
 
-   type Niv_Prof is private;
+   type niv_prof is private;
 
    type index_expansio is private;
 
@@ -17,7 +17,7 @@ package d_taulasimbols is
    procedure surt_bloc (ts: in out taula_simbols);
 
    procedure posa_camp (ts: in out taula_simbols; idr,idc: in id_nom; dc: in descripcio; error: out boolean);
-   function consulta_Camp (Ts: in Taula_Simbols; Idr, Idc: in Id_Nom) return Descripcio;
+   function consulta_camp (ts: in taula_simbols; idr, idc: in id_nom) return descripcio;
    procedure actualizar(ts: in out taula_simbols; id: in id_nom; d: in descripcio);
 
    procedure posa_index (ts: in out taula_simbols; ida: in id_nom; di: in descripcio);
@@ -35,7 +35,7 @@ package d_taulasimbols is
 
 private
 
-   type Niv_Prof is new Integer range -1..Max_Prof;
+   type niv_prof is new integer range -1..max_prof;
 
    type index_expansio is new integer range 0..max_noms*max_prof;
 

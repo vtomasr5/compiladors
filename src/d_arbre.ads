@@ -2,137 +2,137 @@ with d_generals, d_descripcio;
 use d_generals, d_descripcio;
 
 package d_arbre is
-   type Node;
-   type Pnode is access Node;
-   type Tnode is (Nprog, Ndproc, Nident, nlit, natom, Nencap, Ncenc, Nl_Param,
-                  Nparam, Ntipus_Param, ndecls, ndecl, Ndecl_Const, Ndecl_Var,
-                  Nvalor, Nlista_Id, Ndecl_tipus, Ndecl_Subr, Ndecl_Array,
-                  Ndecl_Record, Ndecl_Camps, Ndecl_Camp, Ncond, Nsents, Nsent,
-                  Nasig, Nref, Ncalfs, Ncalf, Niterac, Nllam_Proc, Nlexp, Nsuma,
-                  Nresta, Nmult, Ndiv, Nmod, Nand, Nor, Nmajor, Nmenor,
-                  Nmajorigual, Nmenorigual, Ndif, Nigual, Nneg, Nparent, Nnot,
-                  Neref, Nelit);
+   type node;
+   type pnode is access node;
+   type tnode is (nprog, ndproc, nident, nlit, natom, nencap, nparams, nl_param,
+                  nparam, ntipus_param, ndecls, ndecl, ndecl_const, ndecl_var,
+                  nvalor, nlista_id, ndecl_tipus, ndecl_subrang, ndecl_array,
+                  ndecl_record, ndecl_camps, ndecl_camp, ncond, nsents, nsent,
+                  nassig, nref, nqualifs, nqualif, niter, ncrida_proc, nl_exp, nsuma,
+                  nresta, nmult, ndiv, nmod, nand, nor, nmajor, nmenor,
+                  nmajorigual, nmenorigual, ndif, nigual, nneg, nparent, nnot,
+                  neref, nelit);
 
-   type T_Param is (P_In, P_In_Out);
+   type t_param is (p_in, p_in_out);
 
    type mode is (mdvar, mdconst, mdproc, mdresult);
 
-   type Posicio is record
-      Lin, Col: Natural;
+   type posicio is record
+      lin, col: natural;
    end record;
 
-   type Node (Tnd: Tnode) is record
-      case Tnd is
-         when Nident =>
-            Id: Id_Nom;
+   type node (tnd: tnode) is record
+      case tnd is
+         when nident =>
+            id: id_nom;
             pos1: posicio;
-         when Nlit =>
-            Ts: T_Descr_Tipus;
-            Vl: Valor; Pos2: Posicio;
-         when Natom =>
+         when nlit =>
+            tsubj: tipus_subjacent;
+            vl: valor; pos2: posicio;
+         when natom =>
             pos3: posicio;
-         when Nprog =>
-            Prog_Pproc: Pnode;
-         when Ndproc =>
-            Dproc_Pencap: Pnode;
-            Dproc_Pdecls: Pnode;
-            Dproc_Psents: Pnode;
-            Dproc_Pidfinal: Pnode;
-         when Nencap =>
-            Encap_Pidproc: Pnode;
-            Encap_Pcenc: Pnode;
-         when Ncenc =>
-            Cenc_pLpar: Pnode;
-         when Nl_Param =>
-            L_Param_pL_Param: Pnode;
-            L_Param_Pparam: Pnode;
-         when Nparam =>
-            Param_Pidparam: Pnode;
-            Param_Ptipusparam: Pnode;
-            Param_Pidtipusparam: Pnode;
-         when Ntipus_Param =>
-            Tipus_Param: T_Param;
-         when Ndecls =>
-            Decls_Pcontlista: Pnode;
-            Decls_Pdecl: Pnode;
-         when Ndecl =>
-            Decl_Pdecl_Const: Pnode;
-            Decl_Pdecl_var: Pnode;
-            Decl_Pdecl_tipus: Pnode;
-            Decl_Pdecl_proc: Pnode;
-         when Ndecl_Const =>
-            Decl_Const_Plistaid: Pnode;
-            Decl_Const_Pidtipus: Pnode;
-            Decl_Const_Pvalor: Pnode;
-         when Ndecl_Var =>
-            Decl_Var_Plistaid: Pnode;
+         when nprog =>
+            prog_pproc: pnode;
+         when ndproc =>
+            dproc_pencap: pnode;
+            dproc_pdecls: pnode;
+            dproc_psents: pnode;
+            dproc_pidfinal: pnode;
+         when nencap =>
+            encap_pidproc: pnode;
+            encap_pcenc: pnode;
+         when nparams =>
+            params_plpar: pnode;
+         when nl_param =>
+            l_param_pl_param: pnode;
+            l_param_pparam: pnode;
+         when nparam =>
+            param_pidparam: pnode;
+            param_ptipusparam: pnode;
+            param_pidtipusparam: pnode;
+         when ntipus_param =>
+            tipus_param: t_param;
+         when ndecls =>
+            decls_pcontlista: pnode;
+            decls_pdecl: pnode;
+         when ndecl =>
+            decl_pdecl_const: pnode;
+            decl_pdecl_var: pnode;
+            decl_pdecl_tipus: pnode;
+            decl_pdecl_proc: pnode;
+         when ndecl_const =>
+            decl_const_plistaid: pnode;
+            decl_const_pidtipus: pnode;
+            decl_const_pvalor: pnode;
+         when ndecl_var =>
+            decl_var_plistaid: pnode;
             decl_var_pidtipus: pnode;
-         when Nvalor =>
-            Valor_Lit: Pnode;
-            Valor_Lit_Neg: Pnode;
-            Valor_id: Pnode;
-            Valor_id_neg: Pnode;
-         when Nlista_Id =>
-            Lista_Id_pContlista: Pnode;
-            Lista_Id_Pid: Pnode;
-         when Ndecl_Tipus =>
-            Decl_Tipus_Pdecl_Subr: Pnode;
-            Decl_Tipus_Pdecl_Array: Pnode;
-            Decl_Tipus_Pdecl_record: pnode;
-         when Ndecl_Subr =>
-            Decl_Subr_Pid: Pnode;
-            Decl_Subr_Pidtipus: Pnode;
-            Decl_Subr_Pvlmin: Pnode;
-            Decl_Subr_Pvlmax: Pnode;
-         when Ndecl_Array =>
-            decl_array_pid: Pnode;
-            decl_array_plistaid: Pnode;
-            Decl_Array_Pidtipus: Pnode;
-         when Ndecl_Record =>
-            Decl_Record_Pid: Pnode;
-            Decl_Record_Pdecl_Camps: Pnode;
-         when Ndecl_Camps =>
-            Decl_Camps_Pcontlista: Pnode;
-            Decl_Camps_Pdecl_Camp: Pnode;
-         when Ndecl_Camp =>
-            Decl_Camp_Pid: Pnode;
-            Decl_Camp_Pidtipus: Pnode;
-         when Nsents =>
-            sents_Pcontlista: Pnode;
-            sents_Psent: Pnode;
-         when Nsent =>
-            sent_Pcond: Pnode;
-            sent_Pasig: Pnode;
-            sent_Piter: Pnode;
-            sent_Pllam_proc: Pnode;
-         when Ncond =>
-            Cond_Pexp: Pnode;
-            Cond_Psentsif: Pnode;
-            Cond_Psentselse: Pnode;
-         when Nasig =>
-            Asig_Pref: Pnode;
-            Asig_Pexp: Pnode;
-         when Nref =>
-            Ref_Pid: Pnode;
-            Ref_Pcalif: Pnode;
-         when Ncalfs =>
-            calfs_pcontlista: Pnode;
-            Calfs_Pcalif: Pnode;
-         when Ncalf =>
-            Calf1_Pid: Pnode;
-            Calf2_Pexp: Pnode;
-         when Niterac =>
-            Iterac_Pexp: Pnode;
-            Iterac_Psents: Pnode;
-         when Nllam_Proc =>
-            Llam_Proc_Pref: Pnode;
-         when Nlexp =>
-            Lexp_Pcontlista: Pnode;
-            Lexp_Pexp: Pnode;
-         when Nsuma..Nnot =>
-            N_Oper_Exp1: Pnode;
-            N_Oper_Exp2: Pnode;
-         when Neref | Nelit =>
+         when nvalor =>
+            valor_lit: pnode;
+            valor_lit_neg: pnode;
+            valor_id: pnode;
+            valor_id_neg: pnode;
+         when nlista_id =>
+            lista_id_pcontlista: pnode;
+            lista_id_pid: pnode;
+         when ndecl_tipus =>
+            decl_tipus_pdecl_subr: pnode;
+            decl_tipus_pdecl_array: pnode;
+            decl_tipus_pdecl_record: pnode;
+         when ndecl_subrang =>
+            decl_subrang_pid: pnode;
+            decl_subrang_pidtipus: pnode;
+            decl_subrang_pvlmin: pnode;
+            decl_subrang_pvlmax: pnode;
+         when ndecl_array =>
+            decl_array_pid: pnode;
+            decl_array_plistaid: pnode;
+            decl_array_pidtipus: pnode;
+         when ndecl_record =>
+            decl_record_pid: pnode;
+            decl_record_pdecl_camps: pnode;
+         when ndecl_camps =>
+            decl_camps_pcontlista: pnode;
+            decl_camps_pdecl_camp: pnode;
+         when ndecl_camp =>
+            decl_camp_pid: pnode;
+            decl_camp_pidtipus: pnode;
+         when nsents =>
+            sents_pcontlista: pnode;
+            sents_psent: pnode;
+         when nsent =>
+            sent_pcond: pnode;
+            sent_pasig: pnode;
+            sent_piter: pnode;
+            sent_pllam_proc: pnode;
+         when ncond =>
+            cond_pexp: pnode;
+            cond_psentsif: pnode;
+            cond_psentselse: pnode;
+         when nassig =>
+            asig_pref: pnode;
+            asig_pexp: pnode;
+         when nref =>
+            ref_pid: pnode;
+            ref_pcalif: pnode;
+         when nqualifs =>
+            calfs_pcontlista: pnode;
+            calfs_pcalif: pnode;
+         when nqualif =>
+            calf1_pid: pnode;
+            calf2_pexp: pnode;
+         when niter =>
+            iterac_pexp: pnode;
+            iterac_psents: pnode;
+         when ncrida_proc =>
+            crida_proc_pref: pnode;
+         when nl_exp =>
+            l_exp_pcontlista: pnode;
+            l_exp_pexp: pnode;
+         when nsuma..nnot =>
+            n_oper_exp1: pnode;
+            n_oper_exp2: pnode;
+         when neref | nelit =>
             n_exp: pnode;
       end case;
    end record;

@@ -26,7 +26,7 @@ package body d_taulasimbols is
    begin
       error := td(id).prof = prof;
       if not error then
-         Ne := Ta(Prof);
+         ne := Ta(Prof);
          ne := ne + 1;
          te(ne).prof := td(id).prof;
          te(ne).d := td(id).d;
@@ -114,7 +114,7 @@ package body d_taulasimbols is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ie: index_expansio;
-      dr,dc: descripcio;
+      dr, dc: descripcio;
    begin
       dr := td(idr).d;
       if not (dr.td = dtipus) then

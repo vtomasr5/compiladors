@@ -3,8 +3,8 @@ with d_taulanoms; use d_taulanoms;
 with d_generals; use d_generals;
 
 procedure prova_tnoms is
-   id1, id2, id3, id4, id5, id6, id7, id8 : id_nom;
-   t_n : t_noms;
+   id1, id2, id3, id4, id5, id6, id7, id8: id_nom;
+   t_n: t_noms;
 begin
    t_buida(t_n);
 
