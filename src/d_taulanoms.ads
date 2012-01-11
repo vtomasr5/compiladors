@@ -8,7 +8,6 @@ package d_taulanoms is
    ------------------------------------------
    -- DECLARACIO DE PROCEDIMENTS/FUNCIONS  --
    ------------------------------------------
-   procedure Test (tn: in t_noms); -- hay que quitarlo, pero por ahora lo dejamos
    procedure T_buida (tn: out t_noms);
    procedure Posa (tn: in out t_noms; Nom: in String; id_out: out id_nom);
    procedure Posa_str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String);

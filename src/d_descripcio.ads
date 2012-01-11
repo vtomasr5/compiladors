@@ -15,7 +15,6 @@ package d_descripcio is
             li, ls: valor;
          when ts_arr =>
             tcomp: id_nom;
-            --              b: valor;
       end case;
    end record;
 

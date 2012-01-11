@@ -101,37 +101,6 @@ package body d_taulanoms is
       return String(Tc (Tid(Id_tid).Ptr_t_car..Pos_Tc-1));
    end Consultar;
 
-   -- Test
-   procedure Test (tn: in t_noms) is
-   begin
-      Put("---- TD --------");new_line;
-      for I in t_disp'First.. t_disp'Last loop
-         if (tn.Td(I) /= 0) then
-            Put (id_nom'image(I)
-                 & ": " & id_nom'image(tn.Td(I))
-                 & " " & Consultar(tn,tn.Td(I)));
-            new_line;
-         end if;
-      end loop;
-
-      Put("---- TiD --------");new_line;
-      for I in 1.. Integer(tn.index_tid) loop
-         Put (integer'image(I)
-              & ": " & id_str'image( tn.tid(id_nom(i)).ptr_t_car) & " seg: " & id_nom'image( tn.tid(id_nom(i)).seg) );
-         new_line;
-      end loop;
-
-      Put("---- TC --------");new_line;
-      for I in 1..Integer(tn.index_tcar)-1 loop
-         put (character'image(tn.Tc(id_str(I))));
-         if (tn.Tc(id_str(I)) = Ascii.Nul) then
-            new_line;
-         end if;
-      end loop;
-
-      Put("---- FIN TEST--------");new_line;
-   end Test;
-
    -- Posa_str
    procedure Posa_Str (T_N: in out T_Noms; Pos_Tc: out id_str; Token: in String) is
       Tc: T_Car renames T_N.Tc;

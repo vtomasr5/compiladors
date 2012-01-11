@@ -18,12 +18,8 @@ begin
    Posa(Ts, Id_Nom(3), D2, E);
    if E then put("error1"); end if;
    d5:= Consultar (Ts, Id_Nom(3));
-   Put ("Var tipus: ");
    Put (Integer (D5.Dvar_Tp));
-   new_line;
-   Put ("Var valor: ");
    Put (Integer (D5.Dvar_Nv));
-   new_line;
 
    Posa(Ts, Id_Nom(4), D3, E);
    if E then put("error2"); end if;

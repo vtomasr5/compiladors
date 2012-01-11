@@ -17,7 +17,7 @@ package A_Sintactic_Tokens is
          S_Per, S_Divisio, S_Major,
          S_Menor, S_Majorigual, S_Menorigual,
          S_Diferent, S_Igual, S_Assignacio,
-         Menysunitari );
+         Menys_Unitari );
 
     Syntax_Error : exception;
 

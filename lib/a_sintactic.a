@@ -1157,13 +1157,13 @@ begin
                 case yy.rule_id is
 
 when  1 =>
---#line  60
+--#line  59
 rs_prog (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  2 =>
---#line  69
+--#line  68
 rs_decl_proc (
 yyval, 
 yy.value_stack(yy.tos-7), 
@@ -1172,38 +1172,38 @@ yy.value_stack(yy.tos-3),
 yy.value_stack(yy.tos-1));
 
 when  3 =>
---#line  74
+--#line  73
 rs_encap (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  4 =>
---#line  79
+--#line  78
 rs_cenc (
 yyval, 
 yy.value_stack(yy.tos-1));
 
 when  5 =>
---#line  80
+--#line  79
 rs_cenc (
 yyval);
 
 when  6 =>
---#line  85
+--#line  84
 rs_l_param (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  7 =>
---#line  87
+--#line  86
 rs_l_param (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  8 =>
---#line  92
+--#line  91
 rs_param (
 yyval, 
 yy.value_stack(yy.tos-3), 
@@ -1211,53 +1211,53 @@ yy.value_stack(yy.tos-1),
 yy.value_stack(yy.tos));
 
 when  9 =>
---#line  97
+--#line  96
 rs_tipus_param1 (
 yyval);
 
 when  10 =>
---#line  99
+--#line  98
 rs_tipus_param2 (
 yyval);
 
 when  11 =>
---#line  104
+--#line  103
 rs_decls (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  12 =>
---#line  105
+--#line  104
 rs_decls (
 yyval);
 
 when  13 =>
---#line  110
+--#line  109
 rs_decl1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  14 =>
---#line  112
+--#line  111
 rs_decl2 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  15 =>
---#line  114
+--#line  113
 rs_decl3 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  16 =>
---#line  116
+--#line  115
 rs_decl4 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  17 =>
---#line  121
+--#line  120
 rs_decl_const (
 yyval, 
 yy.value_stack(yy.tos-6), 
@@ -1265,70 +1265,70 @@ yy.value_stack(yy.tos-3),
 yy.value_stack(yy.tos-1));
 
 when  18 =>
---#line  126
+--#line  125
 rs_valor1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  19 =>
---#line  128
+--#line  127
 rs_valor2 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  20 =>
---#line  130
+--#line  129
 rs_valor3 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  21 =>
---#line  132
+--#line  131
 rs_valor4 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  22 =>
---#line  137
+--#line  136
 rs_decl_var (
 yyval, 
 yy.value_stack(yy.tos-3), 
 yy.value_stack(yy.tos-1));
 
 when  23 =>
---#line  142
+--#line  141
 rs_lista_id (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  24 =>
---#line  144
+--#line  143
 rs_lista_id (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  25 =>
---#line  149
+--#line  148
 rs_decl_tipus1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  26 =>
---#line  151
+--#line  150
 rs_decl_tipus2 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  27 =>
---#line  153
+--#line  152
 rs_decl_tipus3 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  28 =>
---#line  158
-rs_decl_subr (
+--#line  157
+rs_decl_subrang (
 yyval, 
 yy.value_stack(yy.tos-8), 
 yy.value_stack(yy.tos-5), 
@@ -1336,7 +1336,7 @@ yy.value_stack(yy.tos-3),
 yy.value_stack(yy.tos-1));
 
 when  29 =>
---#line  163
+--#line  162
 rs_decl_array (
 yyval, 
 yy.value_stack(yy.tos-8), 
@@ -1344,77 +1344,77 @@ yy.value_stack(yy.tos-4),
 yy.value_stack(yy.tos-1));
 
 when  30 =>
---#line  168
+--#line  167
 rs_decl_record (
 yyval, 
 yy.value_stack(yy.tos-6), 
 yy.value_stack(yy.tos-3));
 
 when  31 =>
---#line  173
+--#line  172
 rs_decl_camps (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  32 =>
---#line  174
+--#line  173
 rs_decl_camps (
 yyval);
 
 when  33 =>
---#line  179
+--#line  178
 rs_decl_camp (
 yyval, 
 yy.value_stack(yy.tos-3), 
 yy.value_stack(yy.tos-1));
 
 when  34 =>
---#line  184
+--#line  183
 rs_sents (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  35 =>
---#line  186
+--#line  185
 rs_sents (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  36 =>
---#line  191
+--#line  190
 rs_sent1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  37 =>
---#line  193
+--#line  192
 rs_sent2 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  38 =>
---#line  195
+--#line  194
 rs_sent3 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  39 =>
---#line  197
+--#line  196
 rs_sent4 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  40 =>
---#line  202
+--#line  201
 rs_cond (
 yyval, 
 yy.value_stack(yy.tos-5), 
 yy.value_stack(yy.tos-3));
 
 when  41 =>
---#line  204
+--#line  203
 rs_cond (
 yyval, 
 yy.value_stack(yy.tos-7), 
@@ -1422,186 +1422,186 @@ yy.value_stack(yy.tos-5),
 yy.value_stack(yy.tos-3));
 
 when  42 =>
---#line  209
-rs_asig (
+--#line  208
+rs_assig (
 yyval, 
 yy.value_stack(yy.tos-3), 
 yy.value_stack(yy.tos-1));
 
 when  43 =>
---#line  214
+--#line  213
 rs_ref (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  44 =>
---#line  219
+--#line  218
 rs_qualifs (
 yyval, 
 yy.value_stack(yy.tos-1), 
 yy.value_stack(yy.tos));
 
 when  45 =>
---#line  220
+--#line  219
 rs_qualifs (
 yyval);
 
 when  46 =>
---#line  225
+--#line  224
 rs_qualif1 (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  47 =>
---#line  227
+--#line  226
 rs_qualif2 (
 yyval, 
 yy.value_stack(yy.tos-1));
 
 when  48 =>
---#line  232
-rs_lexp (
+--#line  231
+rs_l_exp (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  49 =>
---#line  234
-rs_lexp (
+--#line  233
+rs_l_exp (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  50 =>
---#line  239
+--#line  238
 rs_iter (
 yyval, 
 yy.value_stack(yy.tos-5), 
 yy.value_stack(yy.tos-3));
 
 when  51 =>
---#line  244
+--#line  243
 rs_crida_proc (
 yyval, 
 yy.value_stack(yy.tos-1));
 
 when  52 =>
---#line  249
+--#line  248
 rs_suma (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  53 =>
---#line  251
+--#line  250
 rs_resta (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  54 =>
---#line  253
+--#line  252
 rs_mult (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  55 =>
---#line  255
+--#line  254
 rs_div (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  56 =>
---#line  257
+--#line  256
 rs_mod (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  57 =>
---#line  259
+--#line  258
 rs_and (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  58 =>
---#line  261
+--#line  260
 rs_or (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  59 =>
---#line  263
+--#line  262
 rs_major (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  60 =>
---#line  265
+--#line  264
 rs_menor (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  61 =>
---#line  267
+--#line  266
 rs_majorig (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  62 =>
---#line  269
+--#line  268
 rs_menorig (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  63 =>
---#line  271
+--#line  270
 rs_dif (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  64 =>
---#line  273
+--#line  272
 rs_igual (
 yyval, 
 yy.value_stack(yy.tos-2), 
 yy.value_stack(yy.tos));
 
 when  65 =>
---#line  275
+--#line  274
 rs_neg (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  66 =>
---#line  277
+--#line  276
 rs_parent (
 yyval, 
 yy.value_stack(yy.tos-1));
 
 when  67 =>
---#line  279
+--#line  278
 rs_not (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  68 =>
---#line  281
+--#line  280
 rs_eref (
 yyval, 
 yy.value_stack(yy.tos));
 
 when  69 =>
---#line  283
+--#line  282
 rs_elit (
 yyval, 
 yy.value_stack(yy.tos));
