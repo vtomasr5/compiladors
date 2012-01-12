@@ -4,7 +4,7 @@ use d_generals, d_descripcio;
 package d_arbre is
    type node;
    type pnode is access node;
-   type tnode is (nprog, ndproc, nident, nlit, natom, nencap, nparams, nl_param,
+   type tnode is (nprog, ndproc, nident, nlit, nencap, nparams, nl_param,
                   nparam, ntipus_param, ndecls, ndecl, ndecl_const, ndecl_var,
                   nvalor, nlista_id, ndecl_tipus, ndecl_subrang, ndecl_array,
                   ndecl_record, ndecl_camps, ndecl_camp, ncond, nsents, nsent,
@@ -17,20 +17,13 @@ package d_arbre is
 
    type mode is (mdvar, mdconst, mdproc, mdresult);
 
-   type posicio is record
-      lin, col: natural;
-   end record;
-
    type node (tnd: tnode) is record
       case tnd is
          when nident =>
             id: id_nom;
-            pos1: posicio;
          when nlit =>
             tsubj: tipus_subjacent;
-            vl: valor; pos2: posicio;
-         when natom =>
-            pos3: posicio;
+            vl: valor;
          when nprog =>
             prog_pproc: pnode;
          when ndproc =>

@@ -41,7 +41,7 @@ package d_descripcio is
          when Darg =>
             Darg_Tp: Id_Nom;
             Darg_nv: id_nom;
-            Darg_mode : mode_arg;
+            Darg_mode: mode_arg;
          when Dcamp =>
             Dcamp_Ds: Desplacament;
             dcamp_tp: id_nom;
