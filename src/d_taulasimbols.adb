@@ -14,10 +14,8 @@ package body d_taulasimbols is
       ta(prof) := 0;
    end tbuida;
 
-   procedure posa (ts : in out taula_simbols;
-                   id : in id_nom;
-                   d : in descripcio;
-                   error : out boolean) is
+   procedure posa (ts : in out taula_simbols; id : in id_nom;
+                   d : in descripcio; error : out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -74,10 +72,8 @@ package body d_taulasimbols is
       end loop;
    end surt_bloc;
 
-   procedure posa_camp (ts : in out taula_simbols;
-                        idr,idc: in id_nom;
-                        dc: in descripcio;
-                        error: out boolean) is
+   procedure posa_camp (ts : in out taula_simbols; idr,idc: in id_nom;
+                        dc: in descripcio; error: out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
@@ -109,8 +105,7 @@ package body d_taulasimbols is
       end if;
    end posa_camp;
 
-   function consulta_camp (ts: in taula_simbols;
-                           idr, idc: in id_nom) return descripcio is
+   function consulta_camp (ts: in taula_simbols; idr, idc: in id_nom) return descripcio is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ie: index_expansio;
@@ -145,7 +140,7 @@ package body d_taulasimbols is
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
       da: descripcio;
-      p, pp: index_expansio;
+      ie1, ie2: index_expansio;
       prof : niv_prof renames ts.prof;
       ne: index_expansio;
    begin
@@ -156,11 +151,11 @@ package body d_taulasimbols is
       if not (da.dtipus_dt.td = ts_arr) then
          raise error_array;
       end if;
-      p := td(ida).s;
-      pp := 0;
-      while p /= 0 loop
-         pp := p;
-         p := te(p).s;
+      ie1 := td(ida).s;
+      ie2 := 0;
+      while ie1 /= 0 loop
+         ie2 := ie1;
+         ie1 := te(ie1).s;
       end loop;
       Ne := Ta(Prof);
       Ne := Ne + 1;
@@ -169,15 +164,14 @@ package body d_taulasimbols is
       te(ne).prof := -1;
       te(ne).d := di;
       te(ne).s := 0;
-      if pp = 0 then
+      if ie2 = 0 then
          td(ida).s := ne;
       else
-         te(pp).s := ne;
+         te(ie2).s := ne;
       end if;
    end posa_index;
 
-   procedure primer_index (ts: in taula_simbols;
-                           ida: in id_nom;
+   procedure primer_index (ts: in taula_simbols; ida: in id_nom;
                            it: out index_expansio) is
       td: taula_descripcio renames ts.td;
       da: descripcio;
@@ -208,38 +202,36 @@ package body d_taulasimbols is
       di := te(it).d;
    end consulta_index;
 
-   procedure posar_paramf (ts: in out taula_simbols;
-                           idproc, idparf: in id_nom;
-                           dparf: in descripcio;
-                           error: out boolean) is
+   procedure posar_paramf (ts: in out taula_simbols; idproc, idparf: in id_nom;
+                           dparf: in descripcio; error: out boolean) is
       td: taula_descripcio renames ts.td;
       te: taula_expansio renames ts.te;
       ta: taula_ambits renames ts.ta;
       dp: descripcio;
-      p,pp: index_expansio;
-      prof : niv_prof renames ts.prof;
-      ne : index_expansio;
+      ie1, ie2: index_expansio;
+      prof: niv_prof renames ts.prof;
+      ne: index_expansio;
    begin
       dp := td(idproc).d;
       if dp.td /= dproc then
          raise error_proc;
       end if;
-      p := td(idproc).s;
-      pp := 0;
-      while p /= 0 and then te(p).id /= idparf loop
-         pp := p;
-         p := te(p).s;
+      ie1 := td(idproc).s;
+      ie2 := 0;
+      while ie1 /= 0 and then te(ie1).id /= idparf loop
+         ie2 := ie1;
+         ie1 := te(ie1).s;
       end loop;
-      error := (p /= 0);
+      error := (ie1 /= 0);
       if not error then
          Ne := Ta(Prof);
          Ne := Ne + 1;
          ta(prof) := ne;
          te(ne).id := idparf; te(ne).prof := -1; te(ne).d := dparf; te(ne).s := 0;
-         if pp = 0 then
+         if ie2 = 0 then
             td(idproc).s := ne;
          else
-            te(pp).s := ne;
+            te(ie2).s := ne;
          end if;
       end if;
    end posar_paramf;
