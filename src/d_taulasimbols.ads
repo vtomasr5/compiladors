@@ -3,9 +3,9 @@ use d_generals, d_descripcio;
 
 package d_taulasimbols is
 
-   type niv_prof is private;
+   type niv_prof is private; -- AQUI NO!, en el body!
 
-   type index_expansio is private;
+   type index_expansio is private; -- AQUI NO!, en el body!
 
    type taula_simbols is limited private;
 

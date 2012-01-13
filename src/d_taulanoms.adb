@@ -10,10 +10,10 @@ package body d_taulanoms is
       hash: Integer := 0;
    begin
       for I in Nom'Range loop
-         hash := (hash + ( I * Character'Pos(Nom(I)) ** I ) ) ;
+         hash := (hash + ( I * Character'Pos(Nom(I)) ** I )) mod max_noms;
       end loop;
 
-      return hash mod MAX_NOMS;
+      return hash;
    end Hashing;
 
    -- T_buida
@@ -22,7 +22,6 @@ package body d_taulanoms is
       for I in t_disp'First.. t_disp'Last loop
          tn.td(I) := 0;
       end loop;
-      -- init indices para las tablas --
       tn.Index_tid := id_nom'First;
       tn.Index_tcar := id_str'First;
    end T_buida;
@@ -41,7 +40,7 @@ package body d_taulanoms is
    -- Existeix
    function Existeix(Nom: in String; Tc: in t_car; valor: in id_str) return Boolean is
       pos: id_str;
-      i_string: integer; -- indice para recorrer el string
+      i_string: integer;
    begin
       if valor /=0 then
          i_string := Nom'first;

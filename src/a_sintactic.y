@@ -1,5 +1,5 @@
 %token Error
-%token End_Of_Input
+%token end_of_Input
 %token id
 %token literal
 %token pc_procedure
@@ -55,15 +55,15 @@
 %%
 
 PROGRAMA:
-     DECL_PROC   
-     {rs_prog ($$, $1);}
+     DECL_PROC
+     {rs_programa ($$, $1);}
   ;
 
 DECL_PROC:
-     pc_procedure ENCAP pc_is 
-        DECLARACIONS 
-     pc_begin 
-        SENTENCIES 
+     pc_procedure ENCAP pc_is
+        DECLARACIONS
+     pc_begin
+        SENTENCIES
      pc_end id s_punticoma
      {rs_decl_proc ($$, $2, $4, $6, $8);}
   ;
@@ -75,8 +75,8 @@ ENCAP:
 
 PARAMS:
      s_parentesiobert L_PARAM s_parentesitancat
-     {rs_cenc ($$, $2);}
-  |  {rs_cenc ($$);}
+     {rs_params ($$, $2);}
+  |  {rs_params ($$);}
   ;
 
 L_PARAM:
@@ -93,63 +93,63 @@ PARAM:
 
 MODE:
      pc_in
-     {rs_tipus_param1 ($$);}
+     {rs_mode_in ($$);}
   |  pc_in pc_out
-     {rs_tipus_param2 ($$);}
+     {rs_mode_out ($$);}
   ;
 
 DECLARACIONS:
      DECLARACIONS DECLARACIO
-     {rs_decls ($$, $1, $2);}
-  |  {rs_decls ($$);}
+     {rs_declaracions ($$, $1, $2);}
+  |  {rs_declaracions ($$);}
   ;
 
 DECLARACIO:
      DECL_CONST
-     {rs_decl1 ($$, $1);}
+     {rs_declaracio ($$, $1);}
   |  DECL_VAR
-     {rs_decl2 ($$, $1);}
+     {rs_declaracio ($$, $1);}
   |  DECL_TIPUS
-     {rs_decl3 ($$, $1);}
+     {rs_declaracio ($$, $1);}
   |  DECL_PROC
-     {rs_decl4 ($$, $1);}
+     {rs_declaracio ($$, $1);}
   ;
 
 DECL_CONST:
-     LLISTA_ID s_dospunts pc_constant id s_assignacio VALOR s_punticoma
+     L_ID s_dospunts pc_constant id s_assignacio VALOR s_punticoma
      {rs_decl_const ($$, $1, $4, $6);}
   ;
 
 VALOR:
      literal
-     {rs_valor1 ($$, $1);}
+     {rs_valor_literal ($$, $1);}
   |  s_menys literal
-     {rs_valor2 ($$, $2);}
+     {rs_valor_s_menys ($$, $2);}
   |  id
-     {rs_valor3 ($$, $1);}
+     {rs_valor_id ($$, $1);}
   |  s_menys id
-     {rs_valor4 ($$, $2);}
+     {rs_valor_s_menys_id ($$, $2);}
   ;
 
 DECL_VAR:
-     LLISTA_ID s_dospunts id s_punticoma
+     L_ID s_dospunts id s_punticoma
      {rs_decl_var ($$, $1, $3);}
   ;
 
-LLISTA_ID:
-     LLISTA_ID s_coma id
-     {rs_lista_id ($$, $1, $3);}
+L_ID:
+     L_ID s_coma id
+     {rs_l_id ($$, $1, $3);}
   |  id
-     {rs_lista_id ($$, $1);}
+     {rs_l_id ($$, $1);}
   ;
 
 DECL_TIPUS:
      DECL_SUBRANG
-     {rs_decl_tipus1 ($$, $1);}
+     {rs_decl_tipus_subrang ($$, $1);}
   |  DECL_ARRAY
-     {rs_decl_tipus2 ($$, $1);}
+     {rs_decl_tipus_array ($$, $1);}
   |  DECL_RECORD
-     {rs_decl_tipus3 ($$, $1);}
+     {rs_decl_tipus_record ($$, $1);}
   ;
 
 DECL_SUBRANG:
@@ -158,7 +158,7 @@ DECL_SUBRANG:
   ;
 
 DECL_ARRAY:
-     pc_type id pc_is pc_array s_parentesiobert LLISTA_ID s_parentesitancat pc_of id s_punticoma
+     pc_type id pc_is pc_array s_parentesiobert L_ID s_parentesitancat pc_of id s_punticoma
      {rs_decl_array ($$, $2, $6, $9);}
   ;
 
@@ -177,23 +177,23 @@ DECL_CAMP:
      id s_dospunts id s_punticoma
      {rs_decl_camp ($$, $1, $3);}
   ;
-     
+
 SENTENCIES:
      SENTENCIES SENTENCIA
-     {rs_sents ($$, $1, $2);}
+     {rs_sentencies ($$, $1, $2);}
   |  SENTENCIA
-     {rs_sents ($$, $1);}
+     {rs_sentencia ($$, $1);}
   ;
 
 SENTENCIA:
      CONDICIONAL
-     {rs_sent1 ($$, $1);}
+     {rs_sent_cond ($$, $1);}
   |  ASSIGNACIO
-     {rs_sent2 ($$, $1);}
+     {rs_sent_assig ($$, $1);}
   |  ITERACIO
-     {rs_sent3 ($$, $1);}
-  |  CRIDA_PROC
-     {rs_sent4 ($$, $1);}
+     {rs_sent_iter ($$, $1);}
+  |  CRIDA_PROCEDIMENT
+     {rs_sent_proc ($$, $1);}
   ;
 
 CONDICIONAL:
@@ -205,7 +205,7 @@ CONDICIONAL:
 
 ASSIGNACIO:
      REF s_assignacio E s_punticoma
-     {rs_assig ($$, $1, $3);}
+     {rs_assignacio ($$, $1, $3);}
   ;
 
 REF:
@@ -221,26 +221,26 @@ QUALIFICADORS:
 
 QUALIFICADOR:
      s_punt id
-     {rs_qualif1 ($$, $2);}
-  |  s_parentesiobert LLISTA_E s_parentesitancat
-     {rs_qualif2 ($$, $2);}
+     {rs_qualif_simple ($$, $2);}
+  |  s_parentesiobert L_E s_parentesitancat
+     {rs_qualif_complex ($$, $2);}
   ;
 
-LLISTA_E:
-     LLISTA_E s_coma E
-     {rs_l_exp ($$, $1, $3);}
+L_E:
+     L_E s_coma E
+     {rs_l_e ($$, $1, $3);}
   |  E
-     {rs_l_exp ($$, $1);}
+     {rs_l_e ($$, $1);}
   ;
 
 ITERACIO:
      pc_while E pc_loop SENTENCIES pc_end pc_loop s_punticoma
-     {rs_iter ($$, $2, $4);}
+     {rs_iteracio ($$, $2, $4);}
   ;
 
-CRIDA_PROC:
+CRIDA_PROCEDIMENT:
      REF s_punticoma
-     {rs_crida_proc ($$, $1);}
+     {rs_crida_procediment ($$, $1);}
   ;
 
 E:

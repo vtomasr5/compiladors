@@ -35,7 +35,7 @@ package body d_taulasimbols is
       end if;
    end posa;
 
-   function consultar (ts : in taula_simbols; id : in id_nom) return descripcio is
+   function consultar (ts: in taula_simbols; id: in id_nom) return descripcio is
       td: taula_descripcio renames ts.td;
    begin
       return td(id).d;
