@@ -2,6 +2,7 @@ with d_generals, d_descripcio;
 use d_generals, d_descripcio;
 
 package d_taulasimbols is
+   pragma pure;
 
    type niv_prof is private; -- AQUI NO!, en el body!
 

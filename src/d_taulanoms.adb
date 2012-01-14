@@ -1,4 +1,3 @@
-wiTh Ada.TexT_Io; use Ada.TexT_Io;
 wiTh d_taulanoms; use d_taulanoms;
 
 package body d_taulanoms is

@@ -1,6 +1,7 @@
 with d_generals; use d_generals;
 
 package d_taulanoms is
+   pragma pure;
    --------------------------
    -- DECLARACIO DE TIPUS  --
    --------------------------

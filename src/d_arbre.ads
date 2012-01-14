@@ -2,6 +2,8 @@ with d_generals, d_descripcio;
 use d_generals, d_descripcio;
 
 package d_arbre is
+   pragma pure;
+
    type node;
    type pnode is access node;
    type tnode is (nprograma, ndproc, nidentificador, nlit, nencap, nparams, nl_param,

@@ -1,4 +1,5 @@
 package d_generals is
+   pragma Pure;
    ------------------------------
    -- declaracio de constants: --
    ------------------------------
