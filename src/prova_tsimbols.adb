@@ -1,5 +1,5 @@
-with d_taulasimbols, d_generals, ada.Text_IO,ada.Integer_Text_IO, d_descripcio;
-use d_taulasimbols, d_generals, ada.Text_IO,ada.Integer_Text_IO, d_descripcio;
+with decls.d_taulasimbols, decls.d_generals, ada.Text_IO,ada.Integer_Text_IO, decls.d_descripcio;
+use decls.d_taulasimbols, decls.d_generals, ada.Text_IO,ada.Integer_Text_IO, decls.d_descripcio;
 
 procedure prova_tsimbols is
    Ts: taula_simbols;

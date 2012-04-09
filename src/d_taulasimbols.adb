@@ -1,4 +1,4 @@
-package body d_taulasimbols is
+package body decls.d_taulasimbols is
 
    procedure tbuida(ts : out taula_simbols) is
       td: taula_descripcio renames ts.td;
@@ -265,4 +265,4 @@ package body d_taulasimbols is
       dparf := te(it).d;
    end consulta_paramf;
 
-end d_taulasimbols;
+end decls.d_taulasimbols;

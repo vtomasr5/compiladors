@@ -1,6 +1,7 @@
-wiTh d_taulanoms; use d_taulanoms;
+with decls.d_taulanoms;
+use decls.d_taulanoms;
 
-package body d_taulanoms is
+package body decls.d_taulanoms is
 
    FDC: constant Character := Ascii.Nul;
 
@@ -120,4 +121,4 @@ package body d_taulanoms is
       return String (Tc (pos_tc..index-1));
    end Consultar_Str;
 
-end d_taulanoms;
+end decls.d_taulanoms;

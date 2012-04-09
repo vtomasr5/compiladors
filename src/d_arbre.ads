@@ -1,7 +1,7 @@
-with d_generals, d_descripcio;
-use d_generals, d_descripcio;
+with decls.d_generals, decls.d_descripcio;
+use decls.d_generals, decls.d_descripcio;
 
-package d_arbre is
+package decls.d_arbre is
    pragma pure;
 
    type node;
@@ -132,4 +132,4 @@ package d_arbre is
       end case;
    end record;
 
-end d_arbre;
+end decls.d_arbre;
