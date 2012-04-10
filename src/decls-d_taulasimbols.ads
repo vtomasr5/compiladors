@@ -4,9 +4,7 @@ use decls.d_generals, decls.d_descripcio;
 package decls.d_taulasimbols is
    pragma pure;
 
-   type niv_prof is private; -- AQUI NO!, en el body!
-
-   type index_expansio is private; -- AQUI NO!, en el body!
+   type index_expansio is private;
 
    type taula_simbols is limited private;
 
@@ -35,6 +33,7 @@ package decls.d_taulasimbols is
    error_record, error_array, error_proc: exception;
 
 private
+   type niv_prof;
 
    type niv_prof is new integer range -1..max_prof;
 

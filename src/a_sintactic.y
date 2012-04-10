@@ -106,13 +106,13 @@ DECLARACIONS:
 
 DECLARACIO:
      DECL_CONST
-     {rs_declaracio ($$, $1);}
+     {rs_declaracio_const ($$, $1);}
   |  DECL_VAR
-     {rs_declaracio ($$, $1);}
+     {rs_declaracio_var ($$, $1);}
   |  DECL_TIPUS
-     {rs_declaracio ($$, $1);}
+     {rs_declaracio_tipus ($$, $1);}
   |  DECL_PROC
-     {rs_declaracio ($$, $1);}
+     {rs_declaracio_proc ($$, $1);}
   ;
 
 DECL_CONST:
@@ -182,7 +182,7 @@ SENTENCIES:
      SENTENCIES SENTENCIA
      {rs_sentencies ($$, $1, $2);}
   |  SENTENCIA
-     {rs_sentencia ($$, $1);}
+     {rs_sentencies ($$, $1);}
   ;
 
 SENTENCIA:
