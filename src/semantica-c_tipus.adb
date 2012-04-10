@@ -189,7 +189,7 @@ package body semantica.c_tipus is
 
 
    -- VAL -> lit
-   procedure ct_val_lit (p: in pnode; idt: out Id_Nom; tsb: out T_Descr_Tipus; val: out valor; lin, col: out natural) is
+   procedure ct_val_lit (p: in pnode; idt: out Id_Nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
    begin
       idt := id_nul;
       tsb := p.ts;
@@ -200,7 +200,7 @@ package body semantica.c_tipus is
 
 
    -- VAL -> - lit
-   procedure ct_val_lit_neg (p: in pnode; idt: out id_nom; tsb: out T_Descr_Tipus; val: out valor; lin, col: out natural) is
+   procedure ct_val_lit_neg (p: in pnode; idt: out id_nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
    begin
       if P.Ts /= Ts_Enter then
          missatge_noesenter (p.pos2.lin , p.pos2.col, p.ts);
@@ -215,7 +215,7 @@ package body semantica.c_tipus is
 
 
    -- VAL -> id
-   procedure ct_val_id (p: in pnode; idt: out id_nom; tsb: out T_Descr_Tipus; val: out valor; lin, col: out natural) is
+   procedure ct_val_id (p: in pnode; idt: out id_nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
       d, dt: descripcio;
    begin
       d := consultar (ts, p.id);
@@ -233,7 +233,7 @@ package body semantica.c_tipus is
 
 
    -- VAL -> - id
-   procedure ct_val_id_neg (p: in pnode; idt: out id_nom; tsb: out T_Descr_Tipus; val: out valor; lin, col: out natural) is
+   procedure ct_val_id_neg (p: in pnode; idt: out id_nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
       d, dt: descripcio;
    begin
       d := consultar (ts, p.id);
@@ -258,7 +258,7 @@ package body semantica.c_tipus is
    --     | - lit
    --     | id
    --     | - id
-   procedure Comprovar_Valor (Pnvalor: in Pnode; Idt_Val: out Id_Nom; Tsb: out T_Descr_Tipus; Val: out Valor;
+   procedure Comprovar_Valor (Pnvalor: in Pnode; Idt_Val: out Id_Nom; Tsb: out tipus_subjacent; Val: out Valor;
                               Dt: in Descripcio; Idt: in Id_Nom; lin, col: out natural) is
    begin
       if pnvalor.Valor_Lit /= null then
@@ -289,7 +289,7 @@ package body semantica.c_tipus is
       pidt, pnvalor: pnode;
       idt, idt_val: id_nom;
       dt: descripcio;
-      tsb: T_Descr_Tipus;
+      tsb: tipus_subjacent;
       Val: Valor;
       lin, col : natural;
    begin
@@ -352,10 +352,10 @@ package body semantica.c_tipus is
       id, idt, idt_val: id_nom;
       d, dt: descripcio;
       dtn : descr_tipus;
-      tsb: T_Descr_Tipus;
+      tsb: tipus_subjacent;
       val1, val2: valor;
       e: boolean;
-      Tsb_Subrang: T_Descr_Tipus;
+      Tsb_Subrang: tipus_subjacent;
       lin1, col1, lin2, col2 : natural;
    begin
       pidt := p.Decl_Subr_Pidtipus;
@@ -697,7 +697,7 @@ package body semantica.c_tipus is
 
 
    -- E -> lit
-   procedure ct_expr_lit (p: in pnode; tsb: out t_descr_tipus; idt: out id_nom; lin, col: out natural) is
+   procedure ct_expr_lit (p: in pnode; tsb: out tipus_subjacent; idt: out id_nom; lin, col: out natural) is
       pnlit: pnode;
    begin
       pnlit := p.n_exp;
@@ -709,9 +709,9 @@ package body semantica.c_tipus is
 
 
    -- E
-   procedure Ct_E (P: in Pnode; Idte: out Id_Nom; Tsbe: out T_Descr_Tipus; Mde : out Mode; lin, col: out natural) is
+   procedure Ct_E (P: in Pnode; Idte: out Id_Nom; Tsbe: out tipus_subjacent; Mde : out Mode; lin, col: out natural) is
       Idte1, Idte2 : Id_Nom;
-      Tsbe1, Tsbe2 : T_Descr_Tipus;
+      Tsbe1, Tsbe2 : tipus_subjacent;
       Mde1, Mde2 : Mode;
       lin1, col1, lin2, col2 : natural;
    begin
@@ -764,7 +764,7 @@ package body semantica.c_tipus is
    -- E -> E * E
    -- E -> E / E
    -- E -> E mod E
-   procedure Ct_Expr_Arit (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in T_Descr_Tipus; Tsber: out T_Descr_Tipus;
+   procedure Ct_Expr_Arit (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in tipus_subjacent; Tsber: out tipus_subjacent;
                            lin1, col1, lin2, col2: in natural) is
    begin
       if Tsbe1 /= Ts_Enter then
@@ -797,7 +797,7 @@ package body semantica.c_tipus is
 
 
    -- E -> - E
-   procedure ct_expr_neg (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in T_descr_tipus; tsber: out T_Descr_Tipus; lin, col : in natural) is
+   procedure ct_expr_neg (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in tipus_subjacent; tsber: out tipus_subjacent; lin, col : in natural) is
    begin
       if Tsbe1 /= Ts_Enter then
          Missatge_Noesenter (lin, col, tsbe1);
@@ -810,7 +810,7 @@ package body semantica.c_tipus is
 
    -- E -> E and E
    -- E -> E or E
-   procedure Ct_Expr_Log (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in T_Descr_Tipus; Tsber: out T_Descr_Tipus;
+   procedure Ct_Expr_Log (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in tipus_subjacent; Tsber: out tipus_subjacent;
                           lin1, col1, lin2, col2: in natural) is
    begin
       if Tsbe1 /= Ts_bool then
@@ -831,7 +831,7 @@ package body semantica.c_tipus is
 
 
    -- E -> not E
-   procedure ct_expr_not (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in T_descr_tipus; tsber: out T_Descr_Tipus; lin, col : in natural) is
+   procedure ct_expr_not (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in tipus_subjacent; tsber: out tipus_subjacent; lin, col : in natural) is
    begin
       if Tsbe1 /= Ts_bool then
          missatge_tsbnobool (lin, col, tsbe1);
@@ -848,7 +848,7 @@ package body semantica.c_tipus is
    -- E -> E <= E
    -- E -> E /= E
    -- E -> E = E
-   procedure Ct_Expr_Comp (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in T_Descr_Tipus; Tsber: out T_Descr_Tipus;
+   procedure Ct_Expr_Comp (Idte1, Idte2: in Id_Nom; Idter: out Id_Nom; Tsbe1, Tsbe2: in tipus_subjacent; Tsber: out tipus_subjacent;
                            lin1, col1, lin2, col2: in natural) is
    begin
       if Tsbe1 /= Tsbe2 then
@@ -871,7 +871,7 @@ package body semantica.c_tipus is
 
 
    -- E -> ( E )
-   procedure ct_exp_parent (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in T_descr_tipus; tsber: out T_Descr_Tipus) is
+   procedure ct_exp_parent (Idte1: in id_nom; idter: out Id_Nom; Tsbe1: in tipus_subjacent; tsber: out tipus_subjacent) is
    begin
       Idter := Idte1;
       tsber := tsbe1;
@@ -879,7 +879,7 @@ package body semantica.c_tipus is
 
 
    -- E -> REF
-   procedure ct_exp_ref (p: in pnode; Idtr, idter: out Id_Nom; Tsbr, tsber: out T_Descr_Tipus; mdr, mder: out mode; lin, col: out natural) is
+   procedure ct_exp_ref (p: in pnode; Idtr, idter: out Id_Nom; Tsbr, tsber: out tipus_subjacent; mdr, mder: out mode; lin, col: out natural) is
    begin
       Ct_Ref (p.n_exp, idtr, tsbr, mdr, lin, col);
       Idter := Idtr;
@@ -889,7 +889,7 @@ package body semantica.c_tipus is
 
 
    -- REF -> id CALFS
-   procedure Ct_Ref (P: in Pnode; idt: out Id_nom; Tsb: out T_Descr_Tipus; md: out mode; lin, col: out natural) is
+   procedure Ct_Ref (P: in Pnode; idt: out Id_nom; Tsb: out tipus_subjacent; md: out mode; lin, col: out natural) is
    begin
       ct_ref_id (p.Ref_Pid, idt, tsb, md, lin, col);
       ct_calfs (p.Ref_Pcalif, idt, tsb, md, lin, col);
@@ -897,7 +897,7 @@ package body semantica.c_tipus is
 
 
    -- REF -> id
-   procedure Ct_Ref_Id (P: in Pnode; idt: out id_nom; tsb: out t_descr_tipus; md: out mode; lin, col: out natural) is
+   procedure Ct_Ref_Id (P: in Pnode; idt: out id_nom; tsb: out tipus_subjacent; md: out mode; lin, col: out natural) is
       id : id_nom;
       d, dt : descripcio;
    begin
@@ -948,7 +948,7 @@ package body semantica.c_tipus is
 
    -- CALFS -> CALFS CALF
    --       | lambda
-   procedure Ct_Calfs (P: in Pnode; idt: in out id_nom; tsb: in out t_descr_tipus; md: in out mode; lin, col: in out natural) is
+   procedure Ct_Calfs (P: in Pnode; idt: in out id_nom; tsb: in out tipus_subjacent; md: in out mode; lin, col: in out natural) is
    begin
       if P.Calfs_Pcontlista /= null then
          Ct_Calfs (P.Calfs_Pcontlista, idt, tsb, md, lin, col);
@@ -961,7 +961,7 @@ package body semantica.c_tipus is
 
    -- CALF -> (EXPRS)
    --      | .id
-   procedure Ct_Calf (P: in Pnode; Idt: in out Id_Nom; Tsb: in out T_Descr_Tipus; lin, col: in out natural) is
+   procedure Ct_Calf (P: in Pnode; Idt: in out Id_Nom; Tsb: in out tipus_subjacent; lin, col: in out natural) is
       It : Index_Expansio;
       Primer : Boolean := True;
       darr, dcomp : Descripcio;
@@ -985,7 +985,7 @@ package body semantica.c_tipus is
 
 
    -- CALF -> .id
-   procedure Ct_Ref_Id (P: in Pnode; idt: in out id_nom; tsb: in out t_descr_tipus; lin, col: in out natural) is
+   procedure Ct_Ref_Id (P: in Pnode; idt: in out id_nom; tsb: in out tipus_subjacent; lin, col: in out natural) is
       d, dt : descripcio;
    begin
       if Tsb /= Ts_Rec then
@@ -1010,7 +1010,7 @@ package body semantica.c_tipus is
 
    -- EXPRS -> EXPRS, E
    --       | E
-   procedure Ct_Ref_Listae (P: in Pnode; Idt: in out Id_Nom; Tsb: in out T_Descr_Tipus; pos: in out index_expansio; primer: in out boolean; lin, col: in out natural) is
+   procedure Ct_Ref_Listae (P: in Pnode; Idt: in out Id_Nom; Tsb: in out tipus_subjacent; pos: in out index_expansio; primer: in out boolean; lin, col: in out natural) is
    begin
       if P.Lexp_Pcontlista /= null then
          Ct_Ref_Listae (P.Lexp_Pcontlista, Idt, Tsb, Pos, primer, lin, col);
@@ -1020,7 +1020,7 @@ package body semantica.c_tipus is
 
 
    -- s'executa al finalitzar una llista d'expressions d'una referència.
-   procedure Ct_Ref_Finlista (It: in out Index_Expansio; Idt: in out Id_Nom; Tsb: in out T_Descr_Tipus; lin, col: in natural) is
+   procedure Ct_Ref_Finlista (It: in out Index_Expansio; Idt: in out Id_Nom; Tsb: in out tipus_subjacent; lin, col: in natural) is
       d, dt : descripcio;
    begin
       case Tsb is
@@ -1078,7 +1078,7 @@ package body semantica.c_tipus is
    end Tornar_param;
 
 
-   procedure Validar_Index (Idte: in Id_Nom; Di: in Descripcio; tsbe: in t_descr_tipus; li, ls: out valor; lin, col: in natural) is
+   procedure Validar_Index (Idte: in Id_Nom; Di: in Descripcio; tsbe: in tipus_subjacent; li, ls: out valor; lin, col: in natural) is
       Dti: Descripcio;
    begin
       if Idte = id_nul or idte = idint or idte = idchar or idte = idbool then
@@ -1098,7 +1098,7 @@ package body semantica.c_tipus is
    end Validar_Index;
 
 
-   procedure Validar_param (Idte: in Id_Nom; Darg: in Descripcio; tsbe: in t_descr_tipus; lin, col: in natural) is
+   procedure Validar_param (Idte: in Id_Nom; Darg: in Descripcio; tsbe: in tipus_subjacent; lin, col: in natural) is
       Dtarg: Descripcio;
       idt: id_nom;
    begin
@@ -1131,11 +1131,11 @@ package body semantica.c_tipus is
 
 
    -- s'executa al començar una llista d'expressions d'una referència.
-   procedure Ct_Ref_E (P: in Pnode; it: in out index_expansio; Tsb: in T_Descr_Tipus; idt: in id_nom; primer: in out boolean; lin, col: in out natural) is
+   procedure Ct_Ref_E (P: in Pnode; it: in out index_expansio; Tsb: in tipus_subjacent; idt: in id_nom; primer: in out boolean; lin, col: in out natural) is
       Di, darg: Descripcio;
       Idte, Idarg: Id_Nom;
       li, ls: valor;
-      Tsbe : T_Descr_Tipus;
+      Tsbe : tipus_subjacent;
       mde : mode;
    begin
       Ct_E (P, Idte, Tsbe, Mde, lin, col);
@@ -1200,7 +1200,7 @@ package body semantica.c_tipus is
    -- ITERACIO -> while E loop SENTS end loop;
    procedure Ct_Sent_Cond_It (P: in Pnode) is
       Idt : Id_Nom;
-      Tsb : T_Descr_Tipus;
+      Tsb : tipus_subjacent;
       Md : Mode;
       lin, col: natural;
    begin
@@ -1215,7 +1215,7 @@ package body semantica.c_tipus is
    -- ASIGNACIÓ -> REF := E;
    procedure Ct_Sent_Asig (P: in Pnode) is
       Idtr, Idte : Id_Nom;
-      Tsbr, Tsbe : T_Descr_Tipus;
+      Tsbr, Tsbe : tipus_subjacent;
       Mdr, Mde : Mode;
       Dt: Descripcio;
       lin1, col1, lin2, col2 : natural;
@@ -1252,7 +1252,7 @@ package body semantica.c_tipus is
    -- CRIDA PROC -> REF;
    procedure Ct_Sent_Llam_Proc (P: in Pnode) is
       Idtr : Id_Nom;
-      Tsbr : T_Descr_Tipus;
+      Tsbr : tipus_subjacent;
       Mdr : Mode;
       It : Index_Expansio;
       lin, col : natural;

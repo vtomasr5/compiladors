@@ -6,8 +6,11 @@ project Adac is
    for Exec_Dir use "bin";
 
    package Builder is
-      for Default_Switches ("ada") use ("-g", "-j4");
+      for Default_Switches ("ada") use ("-gnatc");
    end Builder;
+
+   package Compiler is
+   end Compiler;
 
 end Adac;
 

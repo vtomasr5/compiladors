@@ -49,7 +49,7 @@ package body semantica.missatges is
       put_line(f,"El tipus de l'expressió no és escalar");
    end missatge_tsbnoescalarexpr;
 
-   function convertir_tsub_a_string (tsub: in t_descr_tipus) return String is
+   function convertir_tsub_a_string (tsub: in tipus_subjacent) return String is
    begin
       case tsub is
          when ts_bool => return "booleà";
@@ -76,14 +76,14 @@ package body semantica.missatges is
       end case;
    end convertir_td_a_string;
 
-   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom; tsub: in t_descr_tipus) is
+   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom; tsub: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put(f,"No es pot assignar un "&convertir_tsub_a_string(tsub)&" a un identificador ");
       put_line(f,"de tipus """&consultar_id(tn,id)&"""");
    end missatge_tsbdifconst;
 
-   procedure missatge_tipusdifvar(lin,col: in integer; tsub1, tsub2: in t_descr_tipus) is
+   procedure missatge_tipusdifvar(lin,col: in integer; tsub1, tsub2: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put(f,"El tipus "&convertir_tsub_a_string(tsub1)&" de la referència no és compatible amb el tipus ");
@@ -97,7 +97,7 @@ package body semantica.missatges is
       put_line(f,"identificador de tipus """&consultar_id(tn,id1)&"""");
    end missatge_tipusdif;
 
-   procedure missatge_tipusnocomp(lin,col: in integer; tsub1, tsub2: in t_descr_tipus) is
+   procedure missatge_tipusnocomp(lin,col: in integer; tsub1, tsub2: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put(f,"El tipus "&convertir_tsub_a_string(tsub1)&" no és compatible amb el tipus ");
@@ -111,7 +111,7 @@ package body semantica.missatges is
       put_line(f,"troba/en dins el rang del tipus """&consultar_id(tn,id)&"""");
    end missatge_foraderang;
 
-   procedure missatge_noesenter(lin,col: in integer; tsub: in t_descr_tipus) is
+   procedure missatge_noesenter(lin,col: in integer; tsub: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put_line(f,"S'esperava un enter i no un "&convertir_tsub_a_string(tsub));
@@ -215,7 +215,7 @@ package body semantica.missatges is
       put_line(f,"L'identificador no fa referència ni a un array ni a un procediment");
    end missatge_noarrniproc;
 
-   procedure missatge_tsbnobool(lin,col: in integer; tsub: in t_descr_tipus) is
+   procedure missatge_tsbnobool(lin,col: in integer; tsub: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put_line(f,"S'esperava un booleà i no un "&convertir_tsub_a_string(tsub));

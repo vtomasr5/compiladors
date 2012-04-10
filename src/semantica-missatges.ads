@@ -10,12 +10,12 @@ package semantica.missatges is
    procedure missatge_nodtipus(lin,col: in integer; id: in id_nom);
    procedure Missatge_Tsbnoescalar(Lin,Col: in Integer; Id: in Id_Nom);
    procedure missatge_tsbnoescalarexpr(lin,col: in integer);
-   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom; tsub: in t_descr_tipus);
-   procedure missatge_tipusdifvar(lin,col: in integer; tsub1, tsub2: in t_descr_tipus);
+   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom; tsub: in tipus_subjacent);
+   procedure missatge_tipusdifvar(lin,col: in integer; tsub1, tsub2: in tipus_subjacent);
    procedure missatge_tipusdif(lin,col: in integer; id1,id2: in id_nom);
-   procedure missatge_tipusnocomp(lin,col: in integer; tsub1, tsub2: in t_descr_tipus);
+   procedure missatge_tipusnocomp(lin,col: in integer; tsub1, tsub2: in tipus_subjacent);
    procedure missatge_foraderang(lin,col: in integer; id: in id_nom);
-   procedure Missatge_Noesenter(Lin,Col: in Integer; Tsub: in T_Descr_Tipus);
+   procedure Missatge_Noesenter(Lin,Col: in Integer; Tsub: in tipus_subjacent);
    procedure Missatge_Noesconstant (Lin, Col: in Integer; td: in tipus_descripcio);
    procedure missatge_foraderanginf(lin,col: in integer; id: in id_nom);
    procedure missatge_foraderangsup(lin,col: in integer; id: in id_nom);
@@ -32,7 +32,7 @@ package semantica.missatges is
    procedure missatge_refnovar(lin,col: in integer);
    procedure missatge_paramout(lin,col: in integer);
    procedure missatge_noarrniproc(lin,col: in integer);
-   procedure missatge_tsbnobool(lin,col: in integer; tsub: in t_descr_tipus);
+   procedure missatge_tsbnobool(lin,col: in integer; tsub: in tipus_subjacent);
    procedure missatge_noproc(lin,col: in integer);
    procedure missatge_tipusoperdif(lin,col: in integer);
 

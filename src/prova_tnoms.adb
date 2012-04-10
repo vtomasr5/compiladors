@@ -1,6 +1,6 @@
 with Ada.Text_IO; use Ada.Text_IO;
-with d_taulanoms; use d_taulanoms;
-with d_generals; use d_generals;
+with decls.d_taulanoms; use decls.d_taulanoms;
+with decls.d_generals; use decls.d_generals;
 
 procedure prova_tnoms is
    id1, id2, id3, id4, id5, id6, id7, id8: id_nom;

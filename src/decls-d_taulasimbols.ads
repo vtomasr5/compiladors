@@ -33,7 +33,7 @@ package decls.d_taulasimbols is
    error_record, error_array, error_proc: exception;
 
 private
-   type niv_prof;
+
 
    type niv_prof is new integer range -1..max_prof;
 
