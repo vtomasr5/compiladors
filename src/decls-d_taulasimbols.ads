@@ -31,9 +31,8 @@ package decls.d_taulasimbols is
    procedure consulta_paramf (ts: in taula_simbols; it: in index_expansio; idparf: out id_nom; dparf: out descripcio);
 
    error_record, error_array, error_proc: exception;
-
+   type niv_prof is private;
 private
-
 
    type niv_prof is new integer range -1..max_prof;
 

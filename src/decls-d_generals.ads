@@ -21,4 +21,5 @@ package decls.d_generals is
    type num_var is new integer range 0..max_num_var;
    type num_proc is new integer range 0..max_num_proc;
 
+   subtype etiqueta is string (1..10);
 end decls.d_generals;
