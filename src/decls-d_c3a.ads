@@ -1,10 +1,10 @@
-with decls.d_generals,decls.d_descripcio,decls.d_taulasimbols;
-use decls.d_generals,decls.d_descripcio,decls.d_taulasimbols;
+with decls.d_generals, decls.d_descripcio, decls.d_taulasimbols;
+use decls.d_generals, decls.d_descripcio, decls.d_taulasimbols;
 
 package Decls.d_c3a is
    pragma Pure;
-   -- Taula de procediments
 
+   -- Taula de procediments
    type modproc is (ploc, pext); -- local i extern
 
    type infoproc(mode: modproc:= pext) is record
@@ -23,7 +23,6 @@ package Decls.d_c3a is
    type Tprocediments is array (Num_Proc'First+1 .. Num_Proc'Last) of Infoproc;
 
    -- Taula de variables
-
    type modvar is (mvar, mconst);
 
    type infovar(mode: ModVar := mvar) is record
@@ -45,10 +44,10 @@ package Decls.d_c3a is
 
    -- Codi 3@
    type RepertoriInstruccions is
-     (Suma, Resta, Prod, Div, Mod3, And3, Or3, Not3,                       -- aritmetic-lògiques
-      Copia, Asigindex, Consindex,                                       -- còpia
-      Etiq, Goto3, Menor, MenorIg, Igual, Diferent, MajorIg, Major, Neg,  -- bot
-      Call, Rtn, Pmb, Params, Paramc);                               -- crida procediment
+     (Suma, Resta, Prod, Div, Mod3, And3, Or3, Not3,                      -- aritmetic-lògiques
+      Copia, Asigindex, Consindex,                                        -- còpia
+      Etiq, Goto3, Menor, MenorIg, Igual, Diferent, MajorIg, Major, Neg,  -- brancament
+      Call, Rtn, Pmb, Params, Paramc);                                    -- crida procediment
 
    type ElementC3a(Ti: RepertoriInstruccions := Rtn) is record
       case Ti is

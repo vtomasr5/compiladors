@@ -125,8 +125,8 @@ package decls.d_arbre is
             l_exp_pcontllista: pnode;
             l_exp_pexp: pnode;
          when nsuma..nnot =>
-            n_oper_exp1: pnode; --CANVIAR
-            n_oper_exp2: pnode; --CANVIAR
+            n_oper_exp1: pnode;
+            n_oper_exp2: pnode;
          when neref | nelit =>
             n_exp: pnode;
       end case;

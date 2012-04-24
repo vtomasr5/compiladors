@@ -1,6 +1,8 @@
-with semantica.c3a; use Semantica.C3a;
-with Decls.D_Descripcio; use Decls.D_Descripcio;
-package body Semantica.gcodi is
+--with semantica.c3a; use Semantica.C3a;
+with Decls.D_Descripcio, decls.d_c3a, decls.d_pila;
+use Decls.D_Descripcio, decls.d_c3a, decls.d_pila;
+
+package body Semantica.g_codi is
 
    procedure Gc_Prepara (Nom: in String) is
    begin
@@ -11,7 +13,6 @@ package body Semantica.gcodi is
    begin
       tancarc3a;
    end Gc_finalitza;
-
 
    -- DPROC -> procedure ENCAP is
    --            DECLS
@@ -197,7 +198,7 @@ package body Semantica.gcodi is
 
 
    -- s'executa al finalitzar una llista d'expressions d'una referència.
-   procedure Gc_Ref_Finlista (Idt: in out Id_Nom; Tsb: in tipus_subjacent; D: in out Num_Var; da: in out num_var; base: in valor; ocup: in despl; tipus_comp: in id_nom) is
+   procedure Gc_Ref_Finlista (Idt: in out Id_Nom; Tsb: in tipus_subjacent; D: in out Num_Var; da: in out num_var; base: in valor; ocup: in desplacament; tipus_comp: in id_nom) is
       T1, T2, T3, t4: Num_Var;
       elc3a: elementc3a;
    begin
@@ -565,4 +566,4 @@ package body Semantica.gcodi is
       end if;
    end gc_sent_asig;
 
-end semantica.gcodi;
+end semantica.g_codi;

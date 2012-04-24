@@ -1,5 +1,5 @@
-with Semantica.c_tipus, Decls.D_Descripcio;
-use Semantica.c_tipus,Decls.D_Descripcio;
+with Semantica.c_tipus, Decls.D_Descripcio, Semantica.G_codi;
+use Semantica.c_tipus,Decls.D_Descripcio, Semantica.G_codi;
 
 package body semantica.C_Arbre is
 

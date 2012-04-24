@@ -1,5 +1,5 @@
-with Decls.D_Descripcio, decls.d_arbre,decls.d_generals ;
-use Decls.D_Descripcio, decls.d_arbre,decls.d_generals;
+with Decls.D_Descripcio, decls.d_arbre,decls.d_generals, decls.d_taulasimbols;
+use Decls.D_Descripcio, decls.d_arbre,decls.d_generals, decls.d_taulasimbols;
 
 package Semantica.c_tipus is
 
@@ -23,7 +23,7 @@ private
    procedure ct_decl_array (p: in pnode);
    procedure ct_decl_array (p: in pnode; idt: in id_nom; id: in id_nom; nc: in out valor);
    procedure ct_decl_record (p: in pnode);
-   procedure ct_dcamps (p: in pnode; id: in id_nom; ocup: in out despl);
+   procedure ct_dcamps (p: in pnode; id: in id_nom; ocup: in out desplacament);
    procedure Ct_Listasents (P: in Pnode);
    procedure Ct_Listadecls (P: in Pnode);
    procedure Ct_Decls (P: in Pnode);

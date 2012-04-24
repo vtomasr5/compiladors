@@ -1,6 +1,7 @@
-with Ada.Sequential_IO, Ada.Text_IO;
+--with Ada.Sequential_IO, Ada.Text_IO;
 with decls.d_descripcio, decls.d_arbre, decls.d_generals;
 use decls.d_descripcio, decls.d_arbre,decls.d_generals;
+
 package Semantica.g_codi is
 
    procedure Gc_Prepara (Nom: in String);
@@ -11,7 +12,7 @@ package Semantica.g_codi is
    --package fitxers is new Ada.Sequential_IO(ElementC3a);
    --c3a: fitxers.File_Type;
    --c3at: Ada.Text_IO.File_Type;
-   num_Etiq: integer;
+   --     num_Etiq: integer;
 
 private
 
