@@ -1,4 +1,4 @@
---with semantica.c3a; use Semantica.C3a;
+with semantica.c3a; use Semantica.C3a;
 with Decls.D_Descripcio, decls.d_c3a, decls.d_pila;
 use Decls.D_Descripcio, decls.d_c3a, decls.d_pila;
 
