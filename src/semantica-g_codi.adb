@@ -109,7 +109,8 @@ package body Semantica.g_codi is
 
    -- CALFS -> CALFS CALF
    --       | lambda
-   procedure gc_Calfs (P: in Pnode; d: in out num_var; idt: in out id_nom; tsb: in out tipus_subjacent) is
+   procedure gc_Calfs (P: in Pnode; d: in out num_var;
+                       idt: in out id_nom; tsb: in out tipus_subjacent) is
    begin
       if P.Calfs_Pcontlista /= null then
          gc_Calfs (P.Calfs_Pcontlista, d, idt, tsb);
@@ -122,7 +123,8 @@ package body Semantica.g_codi is
 
    -- CALF -> (EXPRS)
    --      | .id
-   procedure gc_Calf (P: in Pnode; d : in out num_var; idt: in out id_nom; tsb: in out tipus_subjacent) is
+   procedure gc_Calf (P: in Pnode; d : in out num_var; idt: in out id_nom;
+                      tsb: in out tipus_subjacent) is
       Primer : Boolean := True;
       dc : num_var;
    begin
@@ -130,13 +132,15 @@ package body Semantica.g_codi is
          Gc_Ref_Id (P.Calf1_Pid, D, Idt, Tsb);
       ELSE
          Gc_Ref_Listae (P.Calf2_Pexp, Idt, Tsb, Primer, D, Dc);
-         gc_ref_finlista (idt, tsb, dc, d, P.Calf2_Pexp.base, P.Calf2_Pexp.ocup, p.Calf2_Pexp.tipus_comp);
+         gc_ref_finlista (idt, tsb, dc, d, P.Calf2_Pexp.base,
+                          P.Calf2_Pexp.ocup, p.Calf2_Pexp.tipus_comp);
       end if;
    end gc_Calf;
 
 
    -- REF -> id
-   procedure gc_ref_id (p: in pnode; d,r : out num_var; idt: out id_nom; n_proc: out num_proc; tsb: out tipus_subjacent) is
+   procedure gc_ref_id (p: in pnode; d,r : out num_var; idt: out id_nom;
+                        n_proc: out num_proc; tsb: out tipus_subjacent) is
       t : num_var;
       elc3a: elementc3a;
    begin
@@ -168,7 +172,8 @@ package body Semantica.g_codi is
 
 
    -- CALF -> .id
-   procedure gc_Ref_Id (P: in Pnode; d: in out num_var; idt: in out id_nom; tsb: out tipus_subjacent) is
+   procedure gc_Ref_Id (P: in Pnode; d: in out num_var; idt: in out id_nom;
+                        tsb: out tipus_subjacent) is
       t : num_var;
       elc3a: elementc3a;
    begin
@@ -188,7 +193,9 @@ package body Semantica.g_codi is
 
    -- EXPRS -> EXPRS, E
    --       | E
-   procedure Gc_Ref_Listae (P: in Pnode; Idt: in out Id_Nom; tsb: in tipus_subjacent; primer: in out boolean; db: in out num_var; d: in out num_var) is
+   procedure Gc_Ref_Listae (P: in Pnode; Idt: in out Id_Nom;
+                            tsb: in tipus_subjacent; primer: in out boolean;
+                            db: in out num_var; d: in out num_var) is
    begin
       if P.Lexp_Pcontlista /= null then
          gc_Ref_Listae (P.Lexp_Pcontlista, Idt, tsb, primer, db, d);
@@ -198,7 +205,10 @@ package body Semantica.g_codi is
 
 
    -- s'executa al finalitzar una llista d'expressions d'una referència.
-   procedure Gc_Ref_Finlista (Idt: in out Id_Nom; Tsb: in tipus_subjacent; D: in out Num_Var; da: in out num_var; base: in valor; ocup: in desplacament; tipus_comp: in id_nom) is
+   procedure Gc_Ref_Finlista (Idt: in out Id_Nom; Tsb: in tipus_subjacent;
+                              D: in out Num_Var; da: in out num_var;
+                              base: in valor; ocup: in desplacament;
+                              tipus_comp: in id_nom) is
       T1, T2, T3, t4: Num_Var;
       elc3a: elementc3a;
    begin
@@ -279,7 +289,8 @@ package body Semantica.g_codi is
    -- E -> E * E
    -- E -> E / E
    -- E -> E mod E
-   procedure Gc_Expr_Arit (P: in Pnode; R1, R2, D1, D2: in Num_Var; R,D: out Num_Var) is
+   procedure Gc_Expr_Arit (P: in Pnode; R1, R2, D1, D2: in Num_Var;
+                           R,D: out Num_Var) is
       T, T1, T2: Num_Var;
       Elc3a: Elementc3a;
    begin
@@ -307,7 +318,8 @@ package body Semantica.g_codi is
 
    -- E -> E and E
    -- E -> E or E
-   procedure Gc_Expr_log (P: in Pnode; R1, R2, D1, D2: in Num_Var; R,D: out Num_Var) is
+   procedure Gc_Expr_log (P: in Pnode; R1, R2, D1, D2: in Num_Var;
+                          R,D: out Num_Var) is
       T, T1, T2: Num_Var;
       Elc3a: Elementc3a;
    begin
@@ -333,7 +345,8 @@ package body Semantica.g_codi is
    -- E -> E <= E
    -- E -> E /= E
    -- E -> E = E
-   procedure Gc_Expr_Comp (P: in Pnode; R1, R2, D1, D2: in Num_Var; R,D: out Num_Var) is
+   procedure Gc_Expr_Comp (P: in Pnode; R1, R2, D1, D2: in Num_Var;
+                           R,D: out Num_Var) is
       T, T1, T2: Num_Var;
       Elc3a: Elementc3a;
       e: etiqueta;
@@ -422,7 +435,8 @@ package body Semantica.g_codi is
 
 
    -- s'executa al començar una llista d'expressions d'una referència.
-   procedure Gc_Ref_E (P: in Pnode; Tsb: in tipus_subjacent; Primer: in out Boolean; D: in out Num_Var) is
+   procedure Gc_Ref_E (P: in Pnode; Tsb: in tipus_subjacent;
+                       Primer: in out Boolean; D: in out Num_Var) is
       N, li, ls : Valor;
       re, de, T1, T2 : Num_Var;
       Elc3a: Elementc3a;

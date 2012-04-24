@@ -33,7 +33,8 @@ package body semantica.C_Arbre is
       Ct_Conclueix;
    end Rs_Aturar_Analisis;
 
-   procedure Rl_Identificador (pident: out Pnode; Nom: in String; L,C: in Natural) is
+   procedure Rl_Identificador (pident: out Pnode; Nom: in String;
+                               L,C: in Natural) is
       Id: Id_Nom;
       p: posicio;
    begin
@@ -44,7 +45,8 @@ package body semantica.C_Arbre is
       Pident.Pos1 := P;
    end Rl_Identificador;
 
-   procedure Rl_Literal_String (Pstring: out Pnode; Nom: in String; L,C: in Natural) is
+   procedure Rl_Literal_String (Pstring: out Pnode; Nom: in String;
+                                L,C: in Natural) is
       Id: Id_String;
       p: posicio;
    begin
@@ -56,7 +58,8 @@ package body semantica.C_Arbre is
       Pstring.Pos2 := P;
    end Rl_Literal_String;
 
-   procedure Rl_Literal_caracter (Pcar: out Pnode; Nom: in String; L,C: in Natural) is
+   procedure Rl_Literal_caracter (Pcar: out Pnode; Nom: in String;
+                                  L,C: in Natural) is
       p: posicio;
    begin
       p :=(l,c);
@@ -66,7 +69,8 @@ package body semantica.C_Arbre is
       Pcar.Pos2 := P;
    end Rl_Literal_Caracter;
 
-   procedure Rl_Literal_enter (Pent: out Pnode; Nom: in String; L,C: in Natural) is
+   procedure Rl_Literal_enter (Pent: out Pnode; Nom: in String;
+                               L,C: in Natural) is
       p: posicio;
    begin
       p :=(l,c);
@@ -90,7 +94,8 @@ package body semantica.C_Arbre is
       Pprog.Prog_Pproc := Pdecl_Proc;
    end Rs_Programa;
 
-   procedure Rs_Decl_Proc (Pdecl_Proc: out Pnode; Pencap, Pdecls, Psents, Pidfinal: in Pnode) is
+   procedure Rs_Decl_Proc (Pdecl_Proc: out Pnode;
+                           Pencap, Pdecls, Psents, Pidfinal: in Pnode) is
    begin
       Pdecl_Proc := new Node (Ndproc);
       Pdecl_Proc.Dproc_Pencap := Pencap;
@@ -135,7 +140,8 @@ package body semantica.C_Arbre is
       Pl_Param.L_Param_Pparam := Pparam;
    end Rs_L_Param;
 
-   procedure Rs_Param (Pparam: out Pnode; Pidparam, Ptipusparam, Pidtipusparam: in Pnode) is
+   procedure Rs_Param (Pparam: out Pnode;
+                       Pidparam, Ptipusparam, Pidtipusparam: in Pnode) is
    begin
       Pparam := new Node (Nparam);
       Pparam.Param_Pidparam := Pidparam;
@@ -205,7 +211,8 @@ package body semantica.C_Arbre is
       Pdecl.Decl_Pdecl_Proc := Pdecl_Proc;
    end rs_declaracio_proc;
 
-   procedure Rs_Decl_Const (Pdecl_Const: out Pnode; Plistaid, Pidtipus, Pvalor: in Pnode) is
+   procedure Rs_Decl_Const (Pdecl_Const: out Pnode;
+                            Plistaid, Pidtipus, Pvalor: in Pnode) is
    begin
       Pdecl_Const := new Node (Ndecl_const);
       Pdecl_Const.Decl_Const_Plistaid := Plistaid;
@@ -270,7 +277,8 @@ package body semantica.C_Arbre is
       Plista_Id.Lista_Id_Pid := Pid;
    end rs_l_id;
 
-   procedure rs_decl_tipus_subrang (Pdecl_tipus: out Pnode; Pdecl_subr: in Pnode) is
+   procedure rs_decl_tipus_subrang (Pdecl_tipus: out Pnode;
+                                    Pdecl_subr: in Pnode) is
    begin
       Pdecl_tipus := new Node (Ndecl_Tipus);
       Pdecl_tipus.Decl_Tipus_Pdecl_Subr := Pdecl_subr;
@@ -278,7 +286,8 @@ package body semantica.C_Arbre is
       Pdecl_tipus.Decl_Tipus_Pdecl_record := null;
    end rs_decl_tipus_subrang;
 
-   procedure rs_decl_tipus_array (Pdecl_tipus: out Pnode; Pdecl_array: in Pnode) is
+   procedure rs_decl_tipus_array (Pdecl_tipus: out Pnode;
+                                  Pdecl_array: in Pnode) is
    begin
       Pdecl_tipus := new Node (Ndecl_Tipus);
       Pdecl_tipus.Decl_Tipus_Pdecl_Subr := null;
@@ -286,7 +295,8 @@ package body semantica.C_Arbre is
       Pdecl_tipus.Decl_Tipus_Pdecl_record := null;
    end rs_decl_tipus_array;
 
-   procedure rs_decl_tipus_record (Pdecl_tipus: out Pnode; Pdecl_record: in Pnode) is
+   procedure rs_decl_tipus_record (Pdecl_tipus: out Pnode;
+                                   Pdecl_record: in Pnode) is
    begin
       Pdecl_tipus := new Node (Ndecl_Tipus);
       Pdecl_tipus.Decl_Tipus_Pdecl_Subr := null;
@@ -294,7 +304,8 @@ package body semantica.C_Arbre is
       Pdecl_tipus.Decl_Tipus_Pdecl_record := Pdecl_record;
    end rs_decl_tipus_record;
 
-   procedure rs_decl_subrang (Pdecl_Subr: out Pnode; Pid, Pidtipus, Pvlmin, Pvlmax: in Pnode) is
+   procedure rs_decl_subrang (Pdecl_Subr: out Pnode;
+                              Pid, Pidtipus, Pvlmin, Pvlmax: in Pnode) is
    begin
       Pdecl_Subr := new Node (Ndecl_Subr);
       Pdecl_Subr.Decl_Subr_Pid := Pid;
@@ -303,7 +314,8 @@ package body semantica.C_Arbre is
       Pdecl_Subr.Decl_Subr_Pvlmax := Pvlmax;
    end rs_decl_subrang;
 
-   procedure Rs_Decl_Array (Pdecl_Array: out Pnode; Pid, Plistaid, Pidtipus: in Pnode) is
+   procedure Rs_Decl_Array (Pdecl_Array: out Pnode;
+                            Pid, Plistaid, Pidtipus: in Pnode) is
    begin
       Pdecl_Array := new Node (Ndecl_Array);
       pdecl_Array.Decl_Array_Pid := Pid;
@@ -311,14 +323,16 @@ package body semantica.C_Arbre is
       Pdecl_Array.Decl_Array_Pidtipus := Pidtipus;
    end Rs_Decl_Array;
 
-   procedure Rs_Decl_record (Pdecl_record: out Pnode; Pid, pdecl_camps: in Pnode) is
+   procedure Rs_Decl_record (Pdecl_record: out Pnode;
+                             Pid, pdecl_camps: in Pnode) is
    begin
       Pdecl_record := new Node (Ndecl_Record);
       pdecl_record.Decl_Record_Pid := Pid;
       Pdecl_Record.Decl_Record_Pdecl_Camps := Pdecl_Camps;
    end Rs_Decl_Record;
 
-   procedure Rs_Decl_camps (Pdecl_camps: out Pnode; Pcontlista, pdecl_camp: in Pnode) is
+   procedure Rs_Decl_camps (Pdecl_camps: out Pnode;
+                            Pcontlista, pdecl_camp: in Pnode) is
    begin
       Pdecl_camps := new Node (Ndecl_Camps);
       pdecl_camps.Decl_Camps_Pcontlista := Pcontlista;
@@ -397,7 +411,8 @@ package body semantica.C_Arbre is
       Pcond.Cond_Psentselse := null;
    end Rs_Cond;
 
-   procedure Rs_cond (Pcond: out Pnode; Pexp2, Psents2if, psents2else: in Pnode) is
+   procedure Rs_cond (Pcond: out Pnode;
+                      Pexp2, Psents2if, psents2else: in Pnode) is
    begin
       Pcond := new Node (Ncond);
       Pcond.Cond_Pexp := Pexp2;

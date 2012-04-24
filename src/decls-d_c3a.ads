@@ -44,10 +44,10 @@ package Decls.d_c3a is
 
    -- Codi 3@
    type RepertoriInstruccions is
-     (Suma, Resta, Prod, Div, Mod3, And3, Or3, Not3,                      -- aritmetic-lògiques
-      Copia, Asigindex, Consindex,                                        -- còpia
-      Etiq, Goto3, Menor, MenorIg, Igual, Diferent, MajorIg, Major, Neg,  -- brancament
-      Call, Rtn, Pmb, Params, Paramc);                                    -- crida procediment
+     (Suma, Resta, Prod, Div, Mod3, And3, Or3, Not3,      -- aritmetic-lògiques
+      Copia, Asigindex, Consindex,                        -- còpia
+      Etiq, Goto3, Menor, MenorIg, Igual, Diferent, MajorIg, Major, Neg, -- bot
+      Call, Rtn, Pmb, Params, Paramc);                    -- crida procediment
 
    type ElementC3a(Ti: RepertoriInstruccions := Rtn) is record
       case Ti is

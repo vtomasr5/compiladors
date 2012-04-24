@@ -21,12 +21,14 @@ package body semantica.c_tipus is
 
       --Character
       afegir_id (tn,idchar,"character");
-      d := (dtipus,(ts_car,tam_car,character'pos(character'first),character'pos(character'last)));
+      d := (dtipus,(ts_car,tam_car,character'pos(character'first),
+        character'pos(character'last)));
       Posa(Ts,Idchar,D,Error);
 
       --Boolean
       afegir_id (tn,idbool,"boolean");
-      d := (dtipus,(ts_bool,tam_bool,boolean'pos(boolean'first),boolean'pos(boolean'last)));
+      d := (dtipus,(ts_bool,tam_bool,boolean'pos(boolean'first),
+        boolean'pos(boolean'last)));
       posa(ts,idbool,d,error);
 
       --True
@@ -51,7 +53,7 @@ package body semantica.c_tipus is
 
       --String
       afegir_id (tn,idstr,"string");
-      d := (dtipus,(ts_arr,despl(long_max_str)*tam_car,idchar, 0));
+      d := (dtipus,(ts_arr,desplacament(long_max_str)*tam_car,idchar, 0));
       posa(ts,idstr,d,error);
 
       --Getc
@@ -64,7 +66,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idpar, true, 0, tam_car, np);
       nv := nv + 1;
       tv(nv) := iVar;
-      d_aux := (dparam,idchar,nv);
+      d_aux := (darg,idchar,nv);
       posa(ts,idproc,d,error);
       posar_paramf(ts, idproc, idpar, d_aux, error);
 
@@ -78,7 +80,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idpar, true, 0, tam_car, np);
       nv := nv + 1;
       tv(nv) := iVar;
-      d_aux := (dparam,idchar,nv);
+      d_aux := (darg,idchar,nv);
       posa(ts,idproc,d,error);
       posar_paramf(ts, idproc, idpar, d_aux, error);
 
@@ -92,7 +94,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idpar, true, 0, tam_int, np);
       nv := nv + 1;
       tv(nv) := iVar;
-      d_aux := (dparam,idint,nv);
+      d_aux := (darg,idint,nv);
       posa(ts,idproc,d,error);
       posar_paramf(ts, idproc, idpar, d_aux, error);
 
@@ -106,7 +108,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idpar, true, 0, tam_int, np);
       nv := nv + 1;
       tv(nv) := iVar;
-      d_aux := (dparam,idint,nv);
+      d_aux := (darg,idint,nv);
       posa(ts,idproc,d,error);
       posar_paramf(ts, idproc, idpar, d_aux, error);
 
@@ -120,7 +122,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idpar, true, 0, 4, np);
       nv := nv + 1;
       tv(nv) := iVar;
-      d_aux := (dparam,idstr,nv);
+      d_aux := (darg,idstr,nv);
       posa(ts,idproc,d,error);
       posar_paramf(ts, idproc, idpar, d_aux, error);
 
@@ -157,7 +159,7 @@ package body semantica.c_tipus is
          missatge_nodtipus (pidt.pos1.lin, pidt.pos1.col, idt);
          raise error;
       end if;
-      ct_decl_var (p.Decl_Var_Plistaid, idt);
+      ct_decl_var (p.decl_var_pl_id, idt);
    end ct_decl_var;
 
 
@@ -170,7 +172,7 @@ package body semantica.c_tipus is
       e: boolean;
       iVar: infovar;
    begin
-      pidv := plid.Lista_Id_Pid;
+      pidv := plid.l_id_pid;
       Idv := Pidv.Id;
       nv := nv + 1;
       d := (Dvar, idt, nv);
@@ -182,8 +184,8 @@ package body semantica.c_tipus is
       Dt := Consultar (Ts, Idt);
       iVar := (mVar, idv, false, 0, dt.dtipus_dt.ocup, cim(pilaProc));
       tv(nv) := iVar;
-      if plid.Lista_Id_pContlista /= null then
-         ct_decl_var (plid.Lista_Id_pContlista, idt);
+      if plid.l_id_pcontllista /= null then
+         ct_decl_var (plid.l_id_pcontllista, idt);
       end if;
    end ct_decl_var;
 
@@ -192,7 +194,7 @@ package body semantica.c_tipus is
    procedure ct_val_lit (p: in pnode; idt: out Id_Nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
    begin
       idt := id_nul;
-      tsb := p.ts;
+      tsb := p.tsubj;
       Val := P.Vl;
       Lin := P.Pos2.Lin;
       col := p.pos2.col;
@@ -202,12 +204,12 @@ package body semantica.c_tipus is
    -- VAL -> - lit
    procedure ct_val_lit_neg (p: in pnode; idt: out id_nom; tsb: out tipus_subjacent; val: out valor; lin, col: out natural) is
    begin
-      if P.Ts /= Ts_Enter then
-         missatge_noesenter (p.pos2.lin , p.pos2.col, p.ts);
+      if P.tsubj /= Ts_Enter then
+         missatge_noesenter (p.pos2.lin , p.pos2.col, p.tsubj);
          raise error;
       end if;
       idt := id_nul;
-      tsb := p.ts;
+      tsb := p.tsubj;
       Val := - P.Vl;
       Lin := P.Pos2.Lin;
       col := p.pos2.col;
@@ -314,7 +316,7 @@ package body semantica.c_tipus is
          missatge_foraderang (lin, col, idt);
          raise error;
       end  if;
-      ct_decl_const (p.Decl_Const_Plistaid, idt, val);
+      ct_decl_const (p.decl_const_pl_id, idt, val);
    end ct_decl_const;
 
 
@@ -328,7 +330,7 @@ package body semantica.c_tipus is
       iVar: infovar;
    BEGIN
       nv := nv + 1;
-      pidv := plid.Lista_Id_Pid;
+      pidv := plid.l_id_pid;
       Idv := Pidv.Id;
       d := (Dconst, idt, val,nv);
       posa (ts, idv, d, e);
@@ -340,8 +342,8 @@ package body semantica.c_tipus is
       nc := nc + 1;
       iVar := (mconst, id_nul, false, val, dt.dtipus_dt.td, nc);
       tv(nv) := iVar;
-      if plid.Lista_Id_pContlista /= null then
-         ct_decl_const (plid.Lista_Id_pContlista, idt, val);
+      if plid.l_id_pcontllista /= null then
+         ct_decl_const (plid.l_id_pcontllista, idt, val);
       end if;
    end ct_decl_const;
 
@@ -358,9 +360,9 @@ package body semantica.c_tipus is
       Tsb_Subrang: tipus_subjacent;
       lin1, col1, lin2, col2 : natural;
    begin
-      pidt := p.Decl_Subr_Pidtipus;
+      pidt := p.decl_subrang_pidtipus;
       idt := pidt.id;
-      pid := p.Decl_Subr_Pid;
+      pid := p.decl_subrang_pid;
       id := pid.id;
       dt := consultar (ts, idt);
       if dt.td /= Dtipus then
@@ -372,9 +374,9 @@ package body semantica.c_tipus is
          missatge_tsbnoescalar (pidt.pos1.lin, pidt.pos1.col, idt);
          raise error;
       end if;
-      Pnvalor := P. Decl_Subr_Pvlmin;
+      Pnvalor := P. decl_subrang_pvlmin;
       comprovar_valor (pnvalor, idt_val, tsb, val1, dt, idt, lin1, col1);
-      Pnvalor := P. Decl_Subr_Pvlmax;
+      Pnvalor := P. decl_subrang_pvlmax;
       comprovar_valor (pnvalor, idt_val, tsb, val2, dt, idt, lin2, col2);
       if (val1 < dt.dtipus_dt.li) then
          missatge_foraderanginf (lin1, col1, pidt.id);
@@ -411,7 +413,7 @@ package body semantica.c_tipus is
       da, dt, dtc, di: descripcio;
       dta : descr_tipus;
       E : Boolean;
-      Ocup: Despl;
+      Ocup: Desplacament;
       base: valor;
       it: index_expansio;
    begin
@@ -431,9 +433,9 @@ package body semantica.c_tipus is
          missatge_nodtipus (pidt.pos1.lin, pidt.pos1.col, idt);
          raise error;
       end if;
-      Ct_Decl_Array (P.Decl_Array_Plistaid, Idt, Id, Nc);
+      Ct_Decl_Array (P.decl_array_pl_id, Idt, Id, Nc);
       dtc := consultar (ts, idt);
-      ocup := despl (nc) * dtc.dtipus_dt.ocup;
+      ocup := desplacament (nc) * dtc.dtipus_dt.ocup;
       primer_index (ts, id, it);
       consulta_index (ts, it, di);
       di := consultar (ts, di.dindex_id);
@@ -459,10 +461,10 @@ package body semantica.c_tipus is
       pindice: pnode;
       id_indice: id_nom;
    begin
-      if p.Lista_Id_pContlista /= null then
-         Ct_Decl_Array (P.Lista_Id_Pcontlista, Idt, Id, Nc);
+      if p.l_id_pcontllista /= null then
+         Ct_Decl_Array (P.l_id_pcontllista, Idt, Id, Nc);
       end if;
-      pindice := p.Lista_Id_Pid;
+      pindice := p.l_id_pid;
       id_indice := pindice.id;
       di := consultar (ts, id_indice);
       if di.td /= Dtipus then
@@ -486,7 +488,7 @@ package body semantica.c_tipus is
    -- DRECORD -> type id is record DCAMPS end record;
    procedure ct_decl_record (p: in pnode) is
       pid: pnode;
-      ocup: despl :=0;
+      ocup: desplacament :=0;
       dt : descr_tipus;
       d : descripcio;
       e : boolean;
@@ -508,16 +510,16 @@ package body semantica.c_tipus is
 
    -- DCAMPS -> DCAMPS id: id
    --        | lambda
-   procedure ct_dcamps (p: in pnode; id: in id_nom; ocup: in out despl) is
+   procedure ct_dcamps (p: in pnode; id: in id_nom; ocup: in out desplacament) is
       pid_camp, pidc, pidct: pnode;
       idc, idct : id_nom;
       dt, dcmp : descripcio;
       e : boolean;
    begin
-      if p.Decl_Camps_Pcontlista.Decl_Camps_Pdecl_Camp /= null then
-         Ct_Dcamps (P.Decl_Camps_Pcontlista, Id, Ocup);
+      if p.decl_camps_pcontllista.decl_camps_pdecl_camp /= null then
+         Ct_Dcamps (P.decl_camps_pcontllista, Id, Ocup);
       end if;
-      pid_camp := p.Decl_Camps_Pdecl_Camp;
+      pid_camp := p.decl_camps_pdecl_camp;
       pidc := pid_camp.Decl_Camp_Pid;
       idc := pidc.id;
       pidct := pid_camp.Decl_Camp_Pidtipus;
@@ -561,8 +563,8 @@ package body semantica.c_tipus is
    --       | SENT
    procedure Ct_Listasents (P: in Pnode) is
    begin
-      if P.sents_Pcontlista /= null then
-         Ct_Listasents (P.Sents_Pcontlista);
+      if P.sents_pcontllista /= null then
+         Ct_Listasents (P.sents_pcontllista);
       end if;
       if P.Sents_Psent /= null then
          Ct_Sent (P.Sents_Psent);
@@ -574,8 +576,8 @@ package body semantica.c_tipus is
    --       | lambda
    procedure Ct_listaDecls (P: in Pnode) is
    begin
-      if P.Decls_Pcontlista /= null then
-         Ct_Listadecls (P.Decls_Pcontlista);
+      if P.decls_pcontllista /= null then
+         Ct_Listadecls (P.decls_pcontllista);
       end if;
       if P.Decls_Pdecl /= null then
          Ct_Decls (P.Decls_Pdecl);
@@ -637,8 +639,8 @@ package body semantica.c_tipus is
       end if;
       Tp(Np) := Iproc;
       empilar(pilaProc,np);
-      if p.Encap_Pcenc.Cenc_pLpar /= null then
-         ct_declencap2 (p.Encap_Pcenc.Cenc_pLpar, id, np);
+      if p.Encap_Pcenc.params_plpar /= null then
+         ct_declencap2 (p.Encap_Pcenc.params_plpar, id, np);
          entra_bloc (ts);
          primer_paramf (ts, id, i);
          while es_valid (i) loop
@@ -682,7 +684,7 @@ package body semantica.c_tipus is
       iVar := (mvar, idp, true, 0, 4, cim (pilaproc));
       if Mode = P_In then
          nv := nv + 1;
-         D := (Dparam, Idtp, nv);
+         D := (darg, Idtp, nv);
       else
          nv := nv + 1;
          D := (Dvar, Idtp, nv);
@@ -701,7 +703,7 @@ package body semantica.c_tipus is
       pnlit: pnode;
    begin
       pnlit := p.n_exp;
-      tsb := pnlit.ts;
+      tsb := pnlit.tsubj;
       Idt := Id_Nul;
       Lin := Pnlit.Pos2.Lin;
       col := pnlit.pos2.col;
@@ -930,13 +932,13 @@ package body semantica.c_tipus is
             Md := Mdconst;
             P.Np := D.Dproc_Np;
             p.tipus := dproc;
-         when Dparam =>
-            idt := d.Dparam_Tp;
-            dt := consultar (ts, d.Dparam_Tp);
+         when darg =>
+            idt := d.darg_tp;
+            dt := consultar (ts, d.darg_tp);
             tsb := dt.dtipus_dt.td;
             Md := Mdconst;
-            P.Nv := D.dparam_nv;
-            P.Tipus := Dparam;
+            P.Nv := D.darg_nv;
+            P.Tipus := darg;
             P.Idt := idt;
             p.tsb := tsb;
          when others =>
@@ -950,11 +952,11 @@ package body semantica.c_tipus is
    --       | lambda
    procedure Ct_Calfs (P: in Pnode; idt: in out id_nom; tsb: in out tipus_subjacent; md: in out mode; lin, col: in out natural) is
    begin
-      if P.Calfs_Pcontlista /= null then
-         Ct_Calfs (P.Calfs_Pcontlista, idt, tsb, md, lin, col);
+      if P.qualifs_pcontllista /= null then
+         Ct_Calfs (P.qualifs_pcontllista, idt, tsb, md, lin, col);
       end if;
-      if P.Calfs_Pcalif /= null then
-         Ct_Calf (P.Calfs_Pcalif, idt, tsb, lin, col);
+      if P.qualifs_pcalif /= null then
+         Ct_Calf (P.qualifs_pcalif, idt, tsb, lin, col);
       end if;
    end Ct_Calfs;
 
@@ -966,17 +968,17 @@ package body semantica.c_tipus is
       Primer : Boolean := True;
       darr, dcomp : Descripcio;
    begin
-      if P.Calf1_Pid /= null then
-         Ct_Ref_Id (P.Calf1_Pid, idt, tsb, lin, col);
+      if P.qualif_pid /= null then
+         Ct_Ref_Id (P.qualif_pid, idt, tsb, lin, col);
       else
-         Ct_Ref_Listae (P.Calf2_Pexp, Idt, Tsb, It, Primer, lin, col);
+         Ct_Ref_Listae (P.qualif_pexp, Idt, Tsb, It, Primer, lin, col);
          if tsb = ts_arr then
             darr := Consultar (Ts, Idt);
-            P.Calf2_Pexp.Base := Darr.Dtipus_Dt.B;
-            p.calf2_Pexp.tipus_comp := darr.Dtipus_dt.tcomp;
+            P.qualif_pexp.Base := Darr.Dtipus_Dt.B;
+            p.qualif_pexp.tipus_comp := darr.Dtipus_dt.tcomp;
             Ct_Ref_Finlista (it, Idt, Tsb, lin, col);
             Dcomp := Consultar (Ts, Idt);
-            P.Calf2_Pexp.Ocup := Dcomp.Dtipus_Dt.Ocup;
+            P.qualif_pexp.Ocup := Dcomp.Dtipus_Dt.Ocup;
          else
             Ct_Ref_Finlista (it, Idt, Tsb, lin, col);
          end if;
@@ -1012,10 +1014,10 @@ package body semantica.c_tipus is
    --       | E
    procedure Ct_Ref_Listae (P: in Pnode; Idt: in out Id_Nom; Tsb: in out tipus_subjacent; pos: in out index_expansio; primer: in out boolean; lin, col: in out natural) is
    begin
-      if P.Lexp_Pcontlista /= null then
-         Ct_Ref_Listae (P.Lexp_Pcontlista, Idt, Tsb, Pos, primer, lin, col);
+      if P.l_exp_pcontllista /= null then
+         Ct_Ref_Listae (P.l_exp_pcontllista, Idt, Tsb, Pos, primer, lin, col);
       end if;
-      Ct_Ref_E (P.Lexp_Pexp, pos, tsb, idt, primer, lin, col);
+      Ct_Ref_E (P.l_exp_pexp, pos, tsb, idt, primer, lin, col);
    end Ct_Ref_Listae;
 
 
@@ -1107,8 +1109,8 @@ package body semantica.c_tipus is
             Dtarg := Consultar (Ts, Darg.Dvar_Tp);
             idt := Darg.Dvar_Tp;
          else
-            Dtarg := Consultar (Ts, Darg.Dparam_Tp);
-            idt := Darg.Dparam_Tp;
+            Dtarg := Consultar (Ts, Darg.darg_tp);
+            idt := Darg.darg_tp;
          end if;
          if Tsbe /= Dtarg.Dtipus_Dt.Td then
             missatge_tipusnocomp (lin, col, tsbe, Dtarg.Dtipus_Dt.Td);
@@ -1121,8 +1123,8 @@ package body semantica.c_tipus is
                raise Error;
             end if;
          else
-            if Idte /= Darg.Dparam_Tp then
-               missatge_tipusindexdif (lin, col, Idte, Darg.Dparam_Tp);
+            if Idte /= Darg.darg_tp then
+               missatge_tipusindexdif (lin, col, Idte, Darg.darg_tp);
                raise Error;
             end if;
          end if;
@@ -1183,9 +1185,9 @@ package body semantica.c_tipus is
             Ct_Listasents (P.Sent_Pcond.Cond_Psentselse);
          end if;
       elsif P.Sent_Piter /= null then
-         Ct_Sent_Cond_It (P.Sent_Piter.Iterac_Pexp);
-         if P.Sent_Piter.Iterac_Psents /= null then
-            Ct_Listasents (P.Sent_Piter.Iterac_Psents);
+         Ct_Sent_Cond_It (P.Sent_Piter.iter_pexp);
+         if P.Sent_Piter.iter_psents /= null then
+            Ct_Listasents (P.Sent_Piter.iter_psents);
          end if;
       elsif P.Sent_Pasig /= null then
          Ct_Sent_Asig (P.Sent_Pasig);
@@ -1220,8 +1222,8 @@ package body semantica.c_tipus is
       Dt: Descripcio;
       lin1, col1, lin2, col2 : natural;
    begin
-      Ct_Ref (P.Asig_Pref, Idtr, Tsbr, Mdr, lin1, col1);
-      Ct_E (P.Asig_Pexp, Idte, Tsbe, Mde, lin2, col2);
+      Ct_Ref (P.assig_pref, Idtr, Tsbr, Mdr, lin1, col1);
+      Ct_E (P.assig_pexp, Idte, Tsbe, Mde, lin2, col2);
       if Mdr /= Mdvar then
          missatge_refnovar (lin1, col1);
          raise Error;
@@ -1257,7 +1259,7 @@ package body semantica.c_tipus is
       It : Index_Expansio;
       lin, col : natural;
    begin
-      Ct_Ref (P.llam_proc_pref, Idtr, Tsbr, Mdr, lin, col);
+      Ct_Ref (P.crida_proc_pref, Idtr, Tsbr, Mdr, lin, col);
       case Tsbr is
          when Ts_Procc =>
             null;

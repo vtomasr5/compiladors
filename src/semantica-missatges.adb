@@ -4,7 +4,7 @@ package body semantica.missatges is
    begin
       new_line;
       Put_Line(" -- S'HA PRODUIT UN ERROR DE COMPILACIO --");
-      put_line(" -- Per saber mes informacio consultau el fitxer:  errors/missatges_error.txt");
+      put_line(" -- Per saber mes informacio consultau el fitxer: errors/missatges_error.txt");
    end missatge_error_comp;
 
    procedure missatge_comp_ok is
@@ -15,7 +15,8 @@ package body semantica.missatges is
 
    procedure escriure_posicio(lin,col: in integer) is
    begin
-      put_line(f,"Error en la línia "&integer'image(lin)&", columna "&integer'image(col));
+      put_line(f,"Error en la línia "&integer'image(lin)&", columna "&
+               integer'image(col));
    end escriure_posicio;
 
    procedure missatge_errorsintactic(lin,col: in integer) is
@@ -27,8 +28,10 @@ package body semantica.missatges is
    procedure missatge_nomproc(lin,col: in integer; id1,id2: in id_nom) is
    begin
       escriure_posicio(lin,col);
-      put(f,"El nom de de l'inici del procedimient """&consultar_id(tn,id1)&""" no correspon amb ");
-      put_line(f,"el nom del final del procedimient """&consultar_id(tn,id2)&"""");
+      put(f,"El nom de de l'inici del procedimient """&consultar_id(tn,id1)
+          &""" no correspon amb ");
+      put_line(f,"el nom del final del procedimient """&consultar_id(tn,id2)
+               &"""");
    end missatge_nomproc;
 
    procedure missatge_nodtipus (lin,col: in integer; id: in id_nom) is
@@ -76,17 +79,20 @@ package body semantica.missatges is
       end case;
    end convertir_td_a_string;
 
-   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom; tsub: in tipus_subjacent) is
+   procedure missatge_tsbdifconst(lin,col: in integer; id: in id_nom;
+                                  tsub: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put(f,"No es pot assignar un "&convertir_tsub_a_string(tsub)&" a un identificador ");
       put_line(f,"de tipus """&consultar_id(tn,id)&"""");
    end missatge_tsbdifconst;
 
-   procedure missatge_tipusdifvar(lin,col: in integer; tsub1, tsub2: in tipus_subjacent) is
+   procedure missatge_tipusdifvar(lin,col: in integer;
+                                  tsub1, tsub2: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
-      put(f,"El tipus "&convertir_tsub_a_string(tsub1)&" de la referència no és compatible amb el tipus ");
+      put(f,"El tipus "&convertir_tsub_a_string(tsub1)&
+          " de la referència no és compatible amb el tipus ");
       put_line(f,""""&convertir_tsub_a_string(tsub2)&""""&" de l'expressió ");
    end missatge_tipusdifvar;
 
@@ -97,7 +103,8 @@ package body semantica.missatges is
       put_line(f,"identificador de tipus """&consultar_id(tn,id1)&"""");
    end missatge_tipusdif;
 
-   procedure missatge_tipusnocomp(lin,col: in integer; tsub1, tsub2: in tipus_subjacent) is
+   procedure missatge_tipusnocomp(lin,col: in integer;
+                                  tsub1, tsub2: in tipus_subjacent) is
    begin
       escriure_posicio(lin,col);
       put(f,"El tipus "&convertir_tsub_a_string(tsub1)&" no és compatible amb el tipus ");
@@ -142,7 +149,8 @@ package body semantica.missatges is
       put_line(f,"El límit inferior es major que el superior");
    end missatge_infmajorsup;
 
-   procedure missatge_jaexisteix(lin,col: in integer; id: in id_nom; simb: in string) is
+   procedure missatge_jaexisteix(lin,col: in integer; id: in id_nom;
+                                 simb: in string) is
    begin
       escriure_posicio(lin,col);
       put_line(f,"El nom de"&simb&" """&consultar_id(tn,id)&""" ja existeix");

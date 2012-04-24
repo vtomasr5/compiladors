@@ -4,18 +4,22 @@ use decls.d_generals;
 package decls.d_descripcio is
    pragma pure;
 
-   type tipus_descripcio is (dnul_la, dconst, dvar, dtipus, dproc, darg_in, darg, dcamp, dindex);
+   type tipus_descripcio is (dnul_la, dconst, dvar, dtipus, dproc, darg_in,
+                             darg, dcamp, dindex);
 
-   type tipus_subjacent is (ts_nul, ts_bool, ts_car, ts_enter, ts_arr, ts_rec, ts_procc, ts_procp);
+   type tipus_subjacent is (ts_nul, ts_bool, ts_car, ts_enter, ts_arr, ts_rec,
+                            ts_procc, ts_procp);
 
    type descr_tipus (td: tipus_subjacent := ts_nul) is record
       ocup: desplacament; -- ocupacio en bytes
       case td is
-         when ts_nul | ts_rec | ts_procc | ts_procp => null;
+         when ts_nul | ts_rec | ts_procc | ts_procp =>
+            null;
          when ts_bool | ts_car | ts_enter =>
             li, ls: valor;
          when ts_arr =>
             tcomp: id_nom;
+            b: valor;
       end case;
    end record;
 
@@ -41,7 +45,7 @@ package decls.d_descripcio is
             Dargin_nv: num_var;
          when Darg =>
             Darg_Tp: Id_Nom;
-            Darg_nv: id_nom;
+            Darg_nv: num_var;
             Darg_mode: mode_arg;
          when Dcamp =>
             Dcamp_Ds: Desplacament;

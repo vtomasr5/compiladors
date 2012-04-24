@@ -10,8 +10,8 @@ package decls.d_arbre is
                   nparam, ntipus_param, ndecls, ndecl, ndecl_const, ndecl_var,
                   nvalor, nl_id, ndecl_tipus, ndecl_subrang, ndecl_array,
                   ndecl_record, ndecl_camps, ndecl_camp, ncond, nsents, nsent,
-                  nassig, nref, nqualifs, nqualif, niteracio, ncrida_proc, nl_exp, nsuma,
-                  nresta, nmult, ndiv, nmod, nand, nor, nmajor, nmenor,
+                  nassig, nref, nqualifs, nqualif, niteracio, ncrida_proc, nl_exp,
+                  nsuma,nresta, nmult, ndiv, nmod, nand, nor, nmajor, nmenor,
                   nmajorigual, nmenorigual, ndif, nigual, nneg, nparent, nnot,
                   neref, nelit);
 
@@ -19,13 +19,25 @@ package decls.d_arbre is
 
    type mode is (mdvar, mdconst, mdproc, mdresult);
 
+   type Posicio is record
+      Lin,Col: Natural;
+   end record;
+
    type node (tnd: tnode) is record
       case tnd is
          when nidentificador =>
             id: id_nom;
+            Pos1: Posicio;
+            Tipus: Tipus_descripcio;
+            Nv: Num_Var;
+            Np: Num_Proc;
+            Idt: id_nom;
+            Tsb: Tipus_subjacent;
+            ds: desplacament;
          when nlit =>
             tsubj: tipus_subjacent;
             vl: valor;
+            pos2: posicio;
          when nprograma =>
             prog_pproc: pnode;
          when ndproc =>
@@ -36,6 +48,7 @@ package decls.d_arbre is
          when nencap =>
             encap_pidproc: pnode;
             encap_pcenc: pnode;
+            encap_pnumproc: num_proc;
          when nparams =>
             params_plpar: pnode;
          when nl_param =>
@@ -124,11 +137,16 @@ package decls.d_arbre is
          when nl_exp =>
             l_exp_pcontllista: pnode;
             l_exp_pexp: pnode;
+            base: Valor;
+            ocup: Desplacament;
+            tipus_comp: id_nom;
          when nsuma..nnot =>
             n_oper_exp1: pnode;
             n_oper_exp2: pnode;
+            li_expc, ls_expc: valor;
          when neref | nelit =>
             n_exp: pnode;
+            li_exps, ls_exps: valor;
       end case;
    end record;
 
